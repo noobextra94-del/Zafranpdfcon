@@ -3,429 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZafranPDF_Converter - CS Magic Pro & Fixed Size Cap</title>
-  
-  <!-- Fast Client Engine Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-  
+  <title>ZafranPDF_Converter - Asli CamScanner Engine</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
     body { background: #070b12; color: #f8fafc; min-height: 100vh; padding: 12px; display: flex; flex-direction: column; align-items: center; }
     .container { width: 100%; max-width: 600px; }
-    
     header { text-align: center; margin-bottom: 14px; }
-    .badge { display: inline-block; background: linear-gradient(135deg, #059669, #10b981); color: white; font-size: 10px; font-weight: 800; padding: 3px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 6px; }
-    h1 { font-size: 18px; background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
-    header p { color: #94a3b8; font-size: 11px; margin-top: 3px; }
-
-    .card { background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 15px; margin-bottom: 12px; }
+    .badge { display: inline-block; background: #059669; color: white; font-size: 10px; font-weight: 800; padding: 3px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 6px; }
+    h1 { font-size: 19px; color: #38bdf8; font-weight: 800; }
+    header p { color: #94a3b8; font-size: 12px; margin-top: 3px; }
     
-    .btn-row { display: flex; gap: 8px; margin: 10px 0; }
-    .btn-pick { flex: 1; text-align: center; padding: 12px 6px; background: #1e293b; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .card { background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+    .btn-pick { display: block; width: 100%; text-align: center; padding: 14px; background: #1e293b; color: #f8fafc; border: 2px dashed #38bdf8; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 700; margin: 10px 0; }
     .btn-pick input { display: none; }
 
-    .meta-bar { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #38bdf8; font-weight: bold; margin-top: 6px; }
-    .gallery-box { display: flex; gap: 8px; overflow-x: auto; padding: 8px 0; min-height: 80px; align-items: center; }
-    .thumb-card { position: relative; flex-shrink: 0; width: 75px; text-align: center; cursor: pointer; }
-    .thumb-card img { width: 75px; height: 100px; object-fit: cover; border-radius: 6px; border: 2px solid #374151; background: #fff; }
-    .thumb-card span { font-size: 10px; color: #94a3b8; margin-top: 3px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .control-row { display: flex; gap: 8px; margin-bottom: 12px; }
+    .btn-filter { flex: 1; padding: 10px; background: #1f2937; color: #cbd5e1; border: 1px solid #374151; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer; }
+    .btn-filter.active { background: #059669; color: white; border-color: #10b981; }
+    .btn-rotate { padding: 10px 14px; background: #334155; color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer; }
 
-    .btn-build { width: 100%; padding: 14px; background: linear-gradient(135deg, #059669, #047857); color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 15px rgba(5,150,105,0.4); }
-    .btn-build:active { transform: scale(0.98); }
+    #preview-img { width: 100%; max-height: 250px; object-fit: contain; background: #000; border-radius: 8px; margin-bottom: 12px; display: none; }
 
-    /* Result Box */
-    .result-box { background: #064e3b; border: 1px solid #059669; border-radius: 10px; padding: 14px; margin-top: 12px; text-align: center; }
-    .size-badge { font-size: 16px; font-weight: 800; color: #a7f3d0; margin-bottom: 10px; }
+    .btn-build { width: 100%; padding: 14px; background: linear-gradient(135deg, #059669, #047857); color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; }
+    .result-box { background: #064e3b; border: 1px solid #059669; border-radius: 10px; padding: 14px; margin-top: 12px; text-align: center; display: none; }
     .btn-dl { display: block; width: 100%; padding: 12px; background: #10b981; color: #022c22; font-weight: 800; border-radius: 8px; text-decoration: none; font-size: 14px; margin-bottom: 8px; }
-    .share-row { display: flex; gap: 8px; }
-    .btn-share { flex: 1; padding: 10px; border: none; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer; color: white; }
-    .btn-wa { background: #25d366; }
-    .btn-ml { background: #ea4335; }
-
-    /* CamScanner Editor Popup */
-    .editor-popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: flex; flex-direction: column; padding: 12px; }
-    .popup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-    .popup-img-wrap { flex: 1; display: flex; justify-content: center; align-items: center; overflow: hidden; background: #1a1a1a; border-radius: 8px; padding: 5px; }
-    .popup-img-wrap canvas { max-width: 100%; max-height: 48vh; object-fit: contain; border-radius: 4px; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
-    .popup-ctrls { background: #111827; border-radius: 10px; padding: 12px; margin-top: 8px; }
-    
-    .preset-list { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 10px; padding-bottom: 4px; }
-    .preset-chip { padding: 8px 12px; background: #1f2937; color: #e2e8f0; border: 1px solid #374151; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; white-space: nowrap; }
-    .preset-chip.active-preset { background: #10b981; color: #022c22; border-color: #34d399; }
-    
-    .ctrl-slider { margin-bottom: 6px; }
-    .ctrl-slider label { display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 2px; }
-    .ctrl-slider input { width: 100%; accent-color: #10b981; }
-    .hidden { display: none !important; }
+    .btn-wa { width: 100%; padding: 10px; background: #25d366; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 13px; cursor: pointer; }
   </style>
 </head>
 <body>
 
   <div class="container">
     <header>
-      <span class="badge">CS Magic Pro + Hard Size Cap</span>
-      <h1>ZafranPDF_Converter Ultra HDR Unlock Free</h1>
-      <p>CamScanner Magic Quality & Strict Under 8.5MB Fixer</p>
+      <span class="badge">OpenCV Sauvola Algorithm</span>
+      <h1>ZafranPDF - Real CamScanner Studio</h1>
+      <p>100% White Paper, Jet Black Ink & Auto Size Reduction</p>
     </header>
 
     <div class="card">
-      <div style="font-size: 13px; font-weight: 700; color: #38bdf8;">Select File (PDF ya Multiple Camera/Gallery Photos):</div>
-      <div class="btn-row">
-        <label class="btn-pick">📸 Camera Scan<input type="file" id="cam-input" accept="image/*" capture="environment" multiple></label>
-        <label class="btn-pick">📁 PDF / Photos<input type="file" id="all-input" accept="image/*,application/pdf" multiple></label>
+      <label class="btn-pick">
+        📸 Photo ya Document Select Karein
+        <input type="file" id="file-in" accept="image/*" multiple>
+      </label>
+
+      <img id="preview-img" src="" alt="preview">
+
+      <div class="control-row">
+        <button class="btn-filter active" id="f-magic" onclick="setMode('magic')">✨ Magic Color Pro</button>
+        <button class="btn-filter" id="f-bw" onclick="setMode('bw')">📄 Deep B&W (Crisp)</button>
+        <button class="btn-rotate" onclick="rotateImg()">🔄 Rotate 90°</button>
       </div>
 
-      <div class="meta-bar">
-        <span id="pages-count">Loaded Pages: 0</span>
-        <span style="color:#10b981; font-size:11px;">(Tap photo for Magic Pro Filters)</span>
-      </div>
-      
-      <div class="gallery-box" id="gallery-container">
-        <span style="font-size: 12px; color: #64748b; margin: auto;">Koi file select nahi hui</span>
-      </div>
+      <button class="btn-build" onclick="processCamScanner()">⚡ Convert to 100% HD CamScanner PDF</button>
+      <div id="status-bar" style="font-size: 12px; text-align: center; margin-top: 10px; color: #10b981;"></div>
 
-      <div style="margin: 8px 0; display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8;">
-        <span>Size Control:</span>
-        <span style="color: #10b981; font-weight: bold;">Locked Under 8.5 MB Maximum</span>
-      </div>
-
-      <button class="btn-build" onclick="generateUltraPdf()">⚡ Auto Enhance & Build (Under 8.5MB)</button>
-      <div id="loader" style="font-size: 12px; text-align: center; margin-top: 10px; color: #10b981;"></div>
-
-      <!-- Result Card -->
-      <div id="res-box" class="result-box hidden">
-        <div class="size-badge" id="res-size">Final Size: 8.2 MB</div>
-        <a id="res-download" class="btn-dl" href="#" download="Zafran_MagicPro.pdf">📥 Download PDF Now</a>
-        <div class="share-row">
-          <button class="btn-share btn-wa" onclick="shareDoc('wa')">💬 Send WhatsApp</button>
-          <button class="btn-share btn-ml" onclick="shareDoc('mail')">✉️ Email Document</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- POPUP CAMSCANNER PHOTO EDITOR -->
-  <div id="editor-popup" class="editor-popup hidden">
-    <div class="popup-header">
-      <h3 style="font-size: 14px; color: #10b981;" id="pop-title">CS Magic Pro Editor</h3>
-      <button onclick="closePop()" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
-    </div>
-    
-    <div class="popup-img-wrap">
-      <canvas id="preview-canvas"></canvas>
-    </div>
-
-    <div class="popup-ctrls">
-      <div class="preset-list">
-        <button class="preset-chip active-preset" id="p-magic" onclick="selectFilter('magic')">✨ Magic Color Pro</button>
-        <button class="preset-chip" id="p-lighten" onclick="selectFilter('lighten')">💡 Lighten (Shadow Remove)</button>
-        <button class="preset-chip" id="p-bw" onclick="selectFilter('bw')">📄 Deep B&W (Sharp Ink)</button>
-        <button class="preset-chip" id="p-color" onclick="selectFilter('color')">🎨 Vivid Color</button>
-        <button class="preset-chip" id="p-orig" onclick="selectFilter('orig')">↺ Original</button>
-      </div>
-
-      <div class="ctrl-slider">
-        <label><span>Ink Darkness / Text Boldness</span><span id="txt-ink">135%</span></label>
-        <input type="range" id="sl-ink" min="80" max="220" value="135" oninput="renderEditorLive()">
-      </div>
-      <div class="ctrl-slider">
-        <label><span>Background Whitening</span><span id="txt-white">130%</span></label>
-        <input type="range" id="sl-white" min="80" max="200" value="130" oninput="renderEditorLive()">
-      </div>
-      
-      <div class="btn-row" style="margin-top: 6px;">
-        <button class="btn-pick" onclick="saveFilters(false)" style="background:#334155;">Apply This Photo</button>
-        <button class="btn-pick" onclick="saveFilters(true)" style="background:#059669;">⚡ Apply ALL Photos</button>
+      <div id="res-box" class="result-box">
+        <div id="res-size" style="font-size: 15px; font-weight: 800; color: #a7f3d0; margin-bottom: 8px;">Size: 3.2 MB (Ultra Sharp)</div>
+        <a id="res-link" class="btn-dl" href="#" download="Zafran_CamScanner.pdf">📥 Download PDF Now</a>
+        <button class="btn-wa" onclick="shareWhatsApp()">💬 Share to WhatsApp</button>
       </div>
     </div>
   </div>
 
   <script>
-    let docPages = [];
-    let editIdx = -1;
+    const API_URL = "https://zafranpdf-converter.onrender.com";
+    let selectedFiles = [];
+    let currentMode = "magic";
+    let currentRotation = 0;
     let finalBlob = null;
 
-    document.getElementById('cam-input').addEventListener('change', e => handleFiles(e.target.files));
-    document.getElementById('all-input').addEventListener('change', e => handleFiles(e.target.files));
-
-    async function handleFiles(files) {
-      const loader = document.getElementById('loader');
-      loader.innerText = "⏳ Loading and preparing pages...";
-      for (let f of files) {
-        if (f.type === "application/pdf") {
-          await readPdfFile(f);
-        } else if (f.type.startsWith("image/")) {
-          const img = await loadImageFromFile(f);
-          docPages.push({
-            imgElement: img,
-            filter: 'magic',
-            ink: 135,
-            white: 130
-          });
-        }
+    document.getElementById('file-in').addEventListener('change', (e) => {
+      selectedFiles = Array.from(e.target.files);
+      if (selectedFiles.length > 0) {
+        const preview = document.getElementById('preview-img');
+        preview.src = URL.createObjectURL(selectedFiles[0]);
+        preview.style.display = "block";
+        document.getElementById('status-bar').innerText = `${selectedFiles.length} file(s) selected`;
       }
-      renderGalleryUI();
-      loader.innerText = "";
+    });
+
+    function setMode(m) {
+      currentMode = m;
+      document.getElementById('f-magic').classList.toggle('active', m === 'magic');
+      document.getElementById('f-bw').classList.toggle('active', m === 'bw');
     }
 
-    function loadImageFromFile(file) {
-      return new Promise((res) => {
-        const img = new Image();
-        img.onload = () => res(img);
-        img.src = URL.createObjectURL(file);
-      });
+    function rotateImg() {
+      currentRotation = (currentRotation + 90) % 360;
+      document.getElementById('preview-img').style.transform = `rotate(${currentRotation}deg)`;
     }
 
-    async function readPdfFile(f) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-      const buf = await f.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const viewport = page.getViewport({ scale: 1.8 });
-        const cvs = document.createElement('canvas');
-        cvs.width = viewport.width;
-        cvs.height = viewport.height;
-        await page.render({ canvasContext: cvs.getContext('2d'), viewport: viewport }).promise;
-        
-        const img = await new Promise((res) => {
-          const im = new Image();
-          im.onload = () => res(im);
-          im.src = cvs.toDataURL('image/jpeg', 0.95);
-        });
-
-        docPages.push({
-          imgElement: img,
-          filter: 'magic',
-          ink: 135,
-          white: 130
-        });
-      }
-    }
-
-    function renderGalleryUI() {
-      const box = document.getElementById('gallery-container');
-      box.innerHTML = '';
-      document.getElementById('pages-count').innerText = `Loaded Pages: ${docPages.length}`;
-      if (docPages.length === 0) {
-        box.innerHTML = '<span style="font-size: 12px; color: #64748b; margin: auto;">Koi file select nahi hui</span>';
-        return;
-      }
-      docPages.forEach((p, idx) => {
-        const d = document.createElement('div');
-        d.className = 'thumb-card';
-        d.onclick = () => openPop(idx);
-        
-        const cv = document.createElement('canvas');
-        cv.width = 120;
-        cv.height = 160;
-        processCamScannerFilter(p.imgElement, cv, p.filter, p.ink, p.white, 160);
-        
-        const im = document.createElement('img');
-        im.src = cv.toDataURL('image/jpeg', 0.7);
-
-        d.appendChild(im);
-        d.innerHTML += `<span>Page ${idx + 1}</span>`;
-        box.appendChild(d);
-      });
-    }
-
-    function openPop(idx) {
-      editIdx = idx;
-      const p = docPages[idx];
-      document.getElementById('pop-title').innerText = `Page #${idx + 1} - CS Magic Pro`;
-      document.getElementById('sl-ink').value = p.ink;
-      document.getElementById('sl-white').value = p.white;
-      highlightPreset(p.filter);
-      renderEditorLive();
-      document.getElementById('editor-popup').classList.remove('hidden');
-    }
-
-    function closePop() {
-      document.getElementById('editor-popup').classList.add('hidden');
-    }
-
-    function selectFilter(ft) {
-      docPages[editIdx].filter = ft;
-      highlightPreset(ft);
-      if (ft === 'magic') { setV(135, 130); }
-      else if (ft === 'lighten') { setV(110, 150); }
-      else if (ft === 'bw') { setV(160, 140); }
-      else if (ft === 'color') { setV(120, 110); }
-      else { setV(100, 100); }
-      renderEditorLive();
-    }
-
-    function highlightPreset(ft) {
-      document.querySelectorAll('.preset-chip').forEach(b => b.classList.remove('active-preset'));
-      const activeBtn = document.getElementById('p-' + ft);
-      if (activeBtn) activeBtn.classList.add('active-preset');
-    }
-
-    function setV(i, w) {
-      document.getElementById('sl-ink').value = i;
-      document.getElementById('sl-white').value = w;
-    }
-
-    function renderEditorLive() {
-      const i = parseInt(document.getElementById('sl-ink').value);
-      const w = parseInt(document.getElementById('sl-white').value);
-      document.getElementById('txt-ink').innerText = i + '%';
-      document.getElementById('txt-white').innerText = w + '%';
-
-      const cvs = document.getElementById('preview-canvas');
-      const p = docPages[editIdx];
-      processCamScannerFilter(p.imgElement, cvs, p.filter, i, w, 800);
-    }
-
-    function saveFilters(applyAll) {
-      const i = parseInt(document.getElementById('sl-ink').value);
-      const w = parseInt(document.getElementById('sl-white').value);
-      const ft = docPages[editIdx].filter;
-
-      if (applyAll) {
-        docPages.forEach(p => { p.ink = i; p.white = w; p.filter = ft; });
-      } else {
-        docPages[editIdx].ink = i;
-        docPages[editIdx].white = w;
-      }
-      renderGalleryUI();
-      closePop();
-    }
-
-    function processCamScannerFilter(img, canvas, filterType, inkVal, whiteVal, maxDim) {
-      let w = img.width;
-      let h = img.height;
-      if (maxDim && (w > maxDim || h > maxDim)) {
-        if (w > h) { h = Math.round((h * maxDim) / w); w = maxDim; }
-        else { w = Math.round((w * maxDim) / h); h = maxDim; }
-      }
-      canvas.width = w;
-      canvas.height = h;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, w, h);
-
-      if (filterType === 'orig') return;
-
-      const imgData = ctx.getImageData(0, 0, w, h);
-      const d = imgData.data;
-      const inkFactor = inkVal / 100.0;
-      const whiteFactor = whiteVal / 100.0;
-
-      for (let i = 0; i < d.length; i += 4) {
-        let r = d[i], g = d[i+1], b = d[i+2];
-
-        if (filterType === 'magic') {
-          let lum = 0.299 * r + 0.587 * g + 0.114 * b;
-          let whiteBoost = (lum / 255.0) * (whiteFactor * 45);
-          r = Math.min(255, r + whiteBoost);
-          g = Math.min(255, g + whiteBoost);
-          b = Math.min(255, b + whiteBoost);
-
-          if (lum < 165) {
-            r = Math.max(0, r - (165 - lum) * (inkFactor - 0.7));
-            g = Math.max(0, g - (165 - lum) * (inkFactor - 0.7));
-            b = Math.max(0, b - (165 - lum) * (inkFactor - 0.7));
-          }
-        } 
-        else if (filterType === 'lighten') {
-          let minV = Math.min(r, g, b);
-          let add = (255 - minV) * (whiteFactor * 0.35);
-          r = Math.min(255, r + add);
-          g = Math.min(255, g + add);
-          b = Math.min(255, b + add);
-        }
-        else if (filterType === 'bw') {
-          let lum = 0.299 * r + 0.587 * g + 0.114 * b;
-          let threshold = 145 * whiteFactor;
-          let val = lum > threshold ? 255 : Math.max(0, lum - (lum * (inkFactor - 0.5)));
-          r = g = b = val;
-        }
-        else if (filterType === 'color') {
-          let avg = (r + g + b) / 3;
-          r = Math.min(255, Math.max(0, r + (r - avg) * 0.4));
-          g = Math.min(255, Math.max(0, g + (g - avg) * 0.4));
-          b = Math.min(255, Math.max(0, b + (b - avg) * 0.4));
-        }
-
-        d[i] = r; d[i+1] = g; d[i+2] = b;
-      }
-      ctx.putImageData(imgData, 0, 0);
-    }
-
-    // STRICT LOCK ENGINE (Ensures output is ALWAYS <= 8.5MB)
-    async function generateUltraPdf() {
-      if (docPages.length === 0) return alert("Pehle PDF ya Images select karein!");
-      const loader = document.getElementById('loader');
+    async function processCamScanner() {
+      if (selectedFiles.length === 0) return alert("Pehle Camera photo select karein!");
+      const status = document.getElementById('status-bar');
       const resBox = document.getElementById('res-box');
-      resBox.classList.add('hidden');
-      loader.innerText = "⏳ CamScanner Engine running... Target size lock ho raha hai...";
+      resBox.style.display = "none";
+
+      status.innerText = "⏳ CamScanner Computer Vision algorithm running... Background shadows remove ho rahi hain...";
+
+      const formData = new FormData();
+      selectedFiles.forEach(f => formData.append("files", f));
+      formData.append("mode", currentMode);
+      formData.append("rotation", currentRotation);
 
       try {
-        const targetMaxBytes = 8.5 * 1024 * 1024; // Strict 8.5 MB Ceiling
-        const totalBudget = 8.2 * 1024 * 1024;
-        const pageBudget = totalBudget / docPages.length;
-
-        // Dynamic dimension & quality tuning based on page count
-        let quality = 0.75;
-        let maxDim = 1500;
-        if (pageBudget < 400000) { quality = 0.65; maxDim = 1300; }
-        if (pageBudget < 250000) { quality = 0.52; maxDim = 1100; }
-        if (pageBudget < 120000) { quality = 0.42; maxDim = 950; }
-
-        let outBytes = await buildPdfStream(maxDim, quality, loader);
-
-        // SECOND PASS CHECK: Agar abhi bhi 8.5MB se upar nikli, to auto re-compress under 8.5MB
-        if (outBytes.length > targetMaxBytes) {
-          loader.innerText = "⚡ Size cap enforcement running... 8.5MB ke andar lock ho raha hai...";
-          outBytes = await buildPdfStream(Math.round(maxDim * 0.8), quality * 0.75, loader);
-        }
-
-        finalBlob = new Blob([outBytes], { type: "application/pdf" });
-        const finalMb = (finalBlob.size / (1024 * 1024)).toFixed(2);
-
-        loader.innerText = "✅ CamScanner Quality Finished!";
-        document.getElementById('res-size').innerText = `Target Achieved: ${finalMb} MB (Locked Under 8.5MB)`;
-        
-        const dlBtn = document.getElementById('res-download');
-        dlBtn.href = URL.createObjectURL(finalBlob);
-        resBox.classList.remove('hidden');
-      } catch (err) {
-        loader.innerText = "❌ Error: " + err.message;
-      }
-    }
-
-    async function buildPdfStream(maxDim, quality, loader) {
-      const { PDFDocument } = PDFLib;
-      const pdf = await PDFDocument.create();
-
-      for (let i = 0; i < docPages.length; i++) {
-        loader.innerText = `Magic Pro Processing page ${i+1} of ${docPages.length}...`;
-        const p = docPages[i];
-        const cvs = document.createElement('canvas');
-        processCamScannerFilter(p.imgElement, cvs, p.filter, p.ink, p.white, maxDim);
-
-        const jpgBytes = await new Promise(res => {
-          cvs.toBlob(b => b.arrayBuffer().then(res), 'image/jpeg', quality);
+        const res = await fetch(`${API_URL}/api/process-doc`, {
+          method: "POST",
+          body: formData
         });
 
-        const img = await pdf.embedJpg(jpgBytes);
-        const pg = pdf.addPage([img.width, img.height]);
-        pg.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
+        if (!res.ok) throw new Error("Processing failed");
+
+        finalBlob = await res.blob();
+        const mb = (finalBlob.size / (1024 * 1024)).toFixed(2);
+        status.innerText = "✅ Completed with CamScanner Quality!";
+        document.getElementById('res-size').innerText = `Final Size: ${mb} MB (100% Crisp Ink)`;
+        
+        const dl = document.getElementById('res-link');
+        dl.href = URL.createObjectURL(finalBlob);
+        resBox.style.display = "block";
+      } catch (err) {
+        status.innerText = "❌ Error: " + err.message;
       }
-      return await pdf.save();
     }
 
-    function shareDoc(mode) {
-      if (!finalBlob) return alert("Pehle PDF generate karein!");
-      const file = new File([finalBlob], "Zafran_MagicPro.pdf", { type: "application/pdf" });
-      if (mode === 'wa' && navigator.canShare && navigator.canShare({ files: [file] })) {
-        navigator.share({ files: [file], title: "ZafranPDF", text: "Here is your CamScanner Magic Pro PDF (Under 8.5MB)." });
-      } else if (mode === 'mail') {
-        window.location.href = `mailto:?subject=ZafranPDF Document&body=Please find your attached PDF.`;
+    function shareWhatsApp() {
+      if (!finalBlob) return;
+      const file = new File([finalBlob], "Zafran_CamScanner.pdf", { type: "application/pdf" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: "CamScanner PDF", text: "Processed via ZafranPDF." });
       } else {
-        alert("PDF download ho chuka hai! Aap direct WhatsApp par send kar sakte hain.");
+        alert("Pehle download karein phir WhatsApp par direct attach karke send karein.");
       }
     }
   </script>
