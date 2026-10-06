@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UltraPDF - Compress & Smart Document Scanner</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    body { background: #0f172a; color: #f8fafc; display: flex; justify-content: center; padding: 20px; }
+    .container { width: 100%; max-width: 680px; }
+    header { text-align: center; margin-bottom: 25px; }
+    header h1 { font-size: 26px; color: #38bdf8; }
+    header p { color: #94a3b8; font-size: 14px; margin-top: 5px; }
+    .tabs { display: flex; gap: 10px; margin-bottom: 15px; }
+    .tabs button { flex: 1; padding: 12px; background: #1e293b; color: #94a3b8; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .tabs button.active { background: #2563eb; color: #fff; }
+    .card { background: #1e293b; border-radius: 12px; padding: 20px; border: 1px solid #334155; }
+    .hidden { display: none; }
+    .drop-zone { border: 2px dashed #475569; border-radius: 8px; padding: 30px; text-align: center; cursor: pointer; margin: 15px 0; position: relative; }
+    .drop-zone input[type="file"] { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer; }
+    .button-row { display: flex; gap: 10px; margin: 15px 0; }
+    .btn-primary { width: 100%; padding: 14px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-secondary { flex: 1; text-align: center; padding: 12px; background: #334155; color: #f8fafc; border-radius: 8px; cursor: pointer; font-size: 14px; }
+    .btn-secondary input { display: none; }
+    #preview-container { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 15px; padding: 5px 0; }
+    #preview-container img { width: 70px; height: 90px; object-fit: cover; border-radius: 6px; border: 1px solid #475569; }
+    .status-box { margin-top: 15px; font-size: 14px; text-align: center; color: #38bdf8; word-break: break-word; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>⚡ UltraPDF Studio</h1>
+      <p>Compress large PDFs down to under 10MB & enhance camera photos into Ultra-HD PDFs.</p>
+    </header>
+
+    <div class="tabs">
+      <button id="tab-compress" class="active" onclick="switchTab('compress')">Compress PDF</button>
+      <button id="tab-scan" onclick="switchTab('scan')">Camera / Image to PDF</button>
+    </div>
+
+    <!-- Compress Section -->
+    <div id="section-compress" class="card">
+      <h3>Reduce 50MB+ PDF to Under 10MB</h3>
+      <div class="drop-zone" id="drop-compress">
+        <p id="file-label">Drag & Drop your PDF file here, or click to browse</p>
+        <input type="file" id="pdf-input" accept="application/pdf">
+      </div>
+      <button class="btn-primary" onclick="handleCompress()">Compress & Download</button>
+      <div id="compress-status" class="status-box"></div>
+    </div>
+
+    <!-- Camera / Scanner Section -->
+    <div id="section-scan" class="card hidden">
+      <h3>Ultra HD Document Scanner (Auto-Enhance)</h3>
+      <div class="button-row">
+        <label class="btn-secondary">
+          📸 Open Camera
+          <input type="file" id="camera-input" accept="image/*" capture="environment" multiple>
+        </label>
+        <label class="btn-secondary">
+          🖼️ Choose Images
+          <input type="file" id="gallery-input" accept="image/*" multiple>
+        </label>
+      </div>
+      <div id="preview-container"></div>
+      <button class="btn-primary" onclick="handleScanToPdf()">Generate Ultra HD PDF</button>
+      <div id="scan-status" class="status-box"></div>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE_URL = "https://zafranpdf-converter.onrender.com";
+
+    function switchTab(tab) {
+      document.getElementById('section-compress').classList.toggle('hidden', tab !== 'compress');
+      document.getElementById('section-scan').classList.toggle('hidden', tab !== 'scan');
+      document.getElementById('tab-compress').classList.toggle('active', tab === 'compress');
+      document.getElementById('tab-scan').classList.toggle('active', tab === 'scan');
+    }
+
+    let scannedImages = [];
+
+    document.getElementById('pdf-input').addEventListener('change', (e) => {
+      if (e.target.files[0]) {
+        document.getElementById('file-label').innerText = "Selected: " + e.target.files[0].name;
+      }
+    });
+
+    function setupImageInputs(inputId) {
+      document.getElementById(inputId).addEventListener('change', (e) => {
+        const files = Array.from(e.target.files);
+        scannedImages.push(...files);
+        renderPreviews();
+      });
+    }
+    setupImageInputs('camera-input');
+    setupImageInputs('gallery-input');
+
+    function renderPreviews() {
+      const container = document.getElementById('preview-container');
+      container.innerHTML = '';
+      scannedImages.forEach(file => {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        container.appendChild(img);
+      });
+    }
+
+    async function handleCompress() {
+      const fileInput = document.getElementById('pdf-input');
+      const status = document.getElementById('compress-status');
+      if (!fileInput.files[0]) {
+        alert("Please select a PDF first!");
+        return;
+      }
+      
+      status.innerText = "⏳ Compressing PDF... (Note: First request can take ~40s if server is waking up)";
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/compress-pdf`, {
+          method: "POST",
+          body: formData
+        });
+        if (!res.ok) throw new Error("Compression failed");
+        
+        const blob = await res.blob();
+        downloadBlob(blob, "compressed_document.pdf");
+        status.innerText = "✅ Done! PDF downloaded successfully.";
+      } catch (err) {
+        status.innerText = "❌ Error: " + err.message;
+      }
+    }
+
+    async function handleScanToPdf() {
+      const status = document.getElementById('scan-status');
+      if (scannedImages.length === 0) {
+        alert("Please take photos or select images first!");
+        return;
+      }
+
+      status.innerText = "⏳ Enhancing images & generating Ultra HD PDF...";
+      const formData = new FormData();
+      scannedImages.forEach(f => formData.append("files", f));
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/images-to-pdf`, {
+          method: "POST",
+          body: formData
+        });
+        if (!res.ok) throw new Error("Processing failed");
+
+        const blob = await res.blob();
+        downloadBlob(blob, "enhanced_scans.pdf");
+        status.innerText = "✅ Done! Ultra HD PDF downloaded.";
+      } catch (err) {
+        status.innerText = "❌ Error: " + err.message;
+      }
+    }
+
+    function downloadBlob(blob, filename) {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+  </script>
+</body>
+</html>
