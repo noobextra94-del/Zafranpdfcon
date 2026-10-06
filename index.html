@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZafranPDF_Converter Ultra HDR Unlock Free</title>
+  <title>ZafranPDF_Converter Ultra HDR & Text De-Blur Unlock Free</title>
   
   <!-- Fast Client Engine Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
@@ -15,7 +15,7 @@
     .container { width: 100%; max-width: 600px; }
     
     header { text-align: center; margin-bottom: 16px; }
-    .badge { display: inline-block; background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; font-size: 10px; font-weight: 800; padding: 3px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 6px; }
+    .badge { display: inline-block; background: linear-gradient(135deg, #10b981, #06b6d4); color: white; font-size: 10px; font-weight: 800; padding: 3px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 6px; }
     h1 { font-size: 19px; background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
     header p { color: #94a3b8; font-size: 12px; margin-top: 4px; }
 
@@ -44,16 +44,17 @@
     .btn-ml { background: #ea4335; }
 
     /* Full-screen Photo Editor Popup */
-    .editor-popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: flex; flex-direction: column; padding: 15px; }
-    .popup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .editor-popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 9999; display: flex; flex-direction: column; padding: 15px; }
+    .popup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .popup-img-wrap { flex: 1; display: flex; justify-content: center; align-items: center; overflow: hidden; background: #000; border-radius: 8px; }
-    .popup-img-wrap img { max-width: 100%; max-height: 48vh; object-fit: contain; }
-    .popup-ctrls { background: #111827; border-radius: 10px; padding: 12px; margin-top: 10px; }
-    .ctrl-slider { margin-bottom: 8px; }
+    .popup-img-wrap img { max-width: 100%; max-height: 42vh; object-fit: contain; }
+    .popup-ctrls { background: #111827; border-radius: 10px; padding: 12px; margin-top: 8px; }
+    .ctrl-slider { margin-bottom: 6px; }
     .ctrl-slider label { display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 2px; }
     .ctrl-slider input { width: 100%; accent-color: #38bdf8; }
     .preset-list { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 10px; }
     .preset-chip { padding: 6px 10px; background: #1f2937; color: #e2e8f0; border: 1px solid #374151; border-radius: 6px; font-size: 11px; cursor: pointer; white-space: nowrap; }
+    .preset-chip.active-preset { background: #0284c7; border-color: #38bdf8; font-weight: bold; }
     .hidden { display: none !important; }
   </style>
 </head>
@@ -61,9 +62,9 @@
 
   <div class="container">
     <header>
-      <span class="badge">Ultra HDR Engine v4</span>
+      <span class="badge">Text De-Blur & Super Sharp Engine</span>
       <h1>ZafranPDF_Converter Ultra HDR Unlock Free</h1>
-      <p>Target Size Fixer (Under 9MB) & Full Photo Editor</p>
+      <p>Target Size Fixer (Under 9MB) & Crystal Clear Text Enhancer</p>
     </header>
 
     <div class="card">
@@ -75,7 +76,7 @@
 
       <div class="meta-bar">
         <span id="pages-count">Loaded Pages: 0</span>
-        <span style="color:#94a3b8; font-size:11px;">(Tap photo to Edit color)</span>
+        <span style="color:#94a3b8; font-size:11px;">(Tap photo to De-blur & Edit)</span>
       </div>
       
       <div class="gallery-box" id="gallery-container">
@@ -83,11 +84,11 @@
       </div>
 
       <div style="margin: 8px 0; display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8;">
-        <span>Size Optimization:</span>
-        <span style="color: #38bdf8; font-weight: bold;">Strict 8.5MB Fixer Enabled</span>
+        <span>Text Clarity & Size:</span>
+        <span style="color: #38bdf8; font-weight: bold;">Super Sharp + Under 8.5MB Fixed</span>
       </div>
 
-      <button class="btn-build" onclick="generateUltraPdf()">⚡ Auto Compress & Fix Under 9MB</button>
+      <button class="btn-build" onclick="generateUltraPdf()">⚡ Auto Compress & Enhance Text (Under 9MB)</button>
       <div id="loader" style="font-size: 12px; text-align: center; margin-top: 10px; color: #38bdf8;"></div>
 
       <!-- Result Card -->
@@ -105,7 +106,7 @@
   <!-- POPUP FULL PHOTO EDITOR -->
   <div id="editor-popup" class="editor-popup hidden">
     <div class="popup-header">
-      <h3 style="font-size: 14px; color: #38bdf8;" id="pop-title">Edit Photo</h3>
+      <h3 style="font-size: 14px; color: #38bdf8;" id="pop-title">Edit & De-Blur Photo</h3>
       <button onclick="closePop()" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
     </div>
     <div class="popup-img-wrap">
@@ -113,23 +114,30 @@
     </div>
     <div class="popup-ctrls">
       <div class="preset-list">
+        <button class="preset-chip" onclick="applyPreset('deblur')">🔍 Text De-Blur (Super Clarity)</button>
         <button class="preset-chip" onclick="applyPreset('hdr')">✨ Ultra HDR</button>
         <button class="preset-chip" onclick="applyPreset('bw')">📄 Clean Document (B&W)</button>
         <button class="preset-chip" onclick="applyPreset('vivid')">🎨 Vivid Color</button>
         <button class="preset-chip" onclick="applyPreset('orig')">↺ Normal</button>
       </div>
+
       <div class="ctrl-slider">
-        <label><span>Brightness</span><span id="txt-br">105%</span></label>
+        <label><span style="color:#38bdf8; font-weight:bold;">🔍 Text Sharpness / De-Blur</span><span id="txt-sh">150%</span></label>
+        <input type="range" id="sl-sh" min="100" max="300" value="150" oninput="updateLive()">
+      </div>
+      <div class="ctrl-slider">
+        <label><span>Contrast (Stroke Darkness)</span><span id="txt-ct">135%</span></label>
+        <input type="range" id="sl-ct" min="70" max="220" value="135" oninput="updateLive()">
+      </div>
+      <div class="ctrl-slider">
+        <label><span>Brightness (Background Whitening)</span><span id="txt-br">105%</span></label>
         <input type="range" id="sl-br" min="60" max="160" value="105" oninput="updateLive()">
       </div>
       <div class="ctrl-slider">
-        <label><span>Contrast (Sharp Text)</span><span id="txt-ct">130%</span></label>
-        <input type="range" id="sl-ct" min="70" max="200" value="130" oninput="updateLive()">
+        <label><span>Color Saturation</span><span id="txt-st">110%</span></label>
+        <input type="range" id="sl-st" min="0" max="200" value="110" oninput="updateLive()">
       </div>
-      <div class="ctrl-slider">
-        <label><span>Color Saturation</span><span id="txt-st">120%</span></label>
-        <input type="range" id="sl-st" min="0" max="200" value="120" oninput="updateLive()">
-      </div>
+      
       <div class="btn-row" style="margin-top: 6px;">
         <button class="btn-pick" onclick="saveFilters(false)" style="background:#334155;">Apply This Photo</button>
         <button class="btn-pick" onclick="saveFilters(true)" style="background:#0284c7;">⚡ Apply ALL Photos</button>
@@ -155,8 +163,9 @@
           docPages.push({
             src: URL.createObjectURL(f),
             bright: 105,
-            contrast: 130,
-            sat: 120
+            contrast: 135,
+            sat: 110,
+            sharp: 150
           });
         }
       }
@@ -170,16 +179,17 @@
       const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
       for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
-        const viewport = page.getViewport({ scale: 1.5 });
+        const viewport = page.getViewport({ scale: 1.6 });
         const cvs = document.createElement('canvas');
         cvs.width = viewport.width;
         cvs.height = viewport.height;
         await page.render({ canvasContext: cvs.getContext('2d'), viewport: viewport }).promise;
         docPages.push({
-          src: cvs.toDataURL('image/jpeg', 0.85),
+          src: cvs.toDataURL('image/jpeg', 0.88),
           bright: 105,
-          contrast: 130,
-          sat: 120
+          contrast: 135,
+          sat: 110,
+          sharp: 150
         });
       }
     }
@@ -212,6 +222,7 @@
       document.getElementById('sl-br').value = p.bright;
       document.getElementById('sl-ct').value = p.contrast;
       document.getElementById('sl-st').value = p.sat;
+      document.getElementById('sl-sh').value = p.sharp || 150;
       updateLive();
       document.getElementById('editor-popup').classList.remove('hidden');
     }
@@ -224,38 +235,73 @@
       const b = document.getElementById('sl-br').value;
       const c = document.getElementById('sl-ct').value;
       const s = document.getElementById('sl-st').value;
+      const sh = document.getElementById('sl-sh').value;
       document.getElementById('txt-br').innerText = b + '%';
       document.getElementById('txt-ct').innerText = c + '%';
       document.getElementById('txt-st').innerText = s + '%';
+      document.getElementById('txt-sh').innerText = sh + '%';
       document.getElementById('pop-img').style.filter = `brightness(${b}%) contrast(${c}%) saturate(${s}%)`;
     }
 
     function applyPreset(p) {
-      if (p === 'hdr') { setV(105, 135, 125); }
-      else if (p === 'bw') { setV(115, 175, 0); }
-      else if (p === 'vivid') { setV(100, 120, 160); }
-      else { setV(100, 100, 100); }
+      if (p === 'deblur') { setV(110, 160, 90, 220); }
+      else if (p === 'hdr') { setV(105, 140, 130, 160); }
+      else if (p === 'bw') { setV(115, 185, 0, 200); }
+      else if (p === 'vivid') { setV(100, 125, 160, 130); }
+      else { setV(100, 100, 100, 100); }
       updateLive();
     }
-    function setV(b, c, s) {
+
+    function setV(b, c, s, sh) {
       document.getElementById('sl-br').value = b;
       document.getElementById('sl-ct').value = c;
       document.getElementById('sl-st').value = s;
+      document.getElementById('sl-sh').value = sh;
     }
 
     function saveFilters(applyAll) {
       const b = document.getElementById('sl-br').value;
       const c = document.getElementById('sl-ct').value;
       const s = document.getElementById('sl-st').value;
+      const sh = document.getElementById('sl-sh').value;
       if (applyAll) {
-        docPages.forEach(p => { p.bright = b; p.contrast = c; p.sat = s; });
+        docPages.forEach(p => { p.bright = b; p.contrast = c; p.sat = s; p.sharp = sh; });
       } else {
         docPages[editIdx].bright = b;
         docPages[editIdx].contrast = c;
         docPages[editIdx].sat = s;
+        docPages[editIdx].sharp = sh;
       }
       renderGalleryUI();
       closePop();
+    }
+
+    // Convolution High-Pass Edge Sharpening for Text De-Blur
+    function applySharpenKernel(ctx, w, h, strength) {
+      if (strength <= 1.05) return;
+      const imgData = ctx.getImageData(0, 0, w, h);
+      const data = imgData.data;
+      const copy = new Uint8ClampedArray(data);
+      
+      const factor = (strength - 1.0) * 1.5;
+      const center = 1 + 4 * factor;
+      const edge = -factor;
+
+      for (let y = 1; y < h - 1; y++) {
+        for (let x = 1; x < w - 1; x++) {
+          const idx = (y * w + x) * 4;
+          for (let c = 0; c < 3; c++) {
+            const val = 
+              center * copy[idx + c] +
+              edge * (copy[((y - 1) * w + x) * 4 + c] +
+                      copy[((y + 1) * w + x) * 4 + c] +
+                      copy[(y * w + (x - 1)) * 4 + c] +
+                      copy[(y * w + (x + 1)) * 4 + c]);
+            data[idx + c] = val;
+          }
+        }
+      }
+      ctx.putImageData(imgData, 0, 0);
     }
 
     async function generateUltraPdf() {
@@ -263,23 +309,23 @@
       const loader = document.getElementById('loader');
       const resBox = document.getElementById('res-box');
       resBox.classList.add('hidden');
-      loader.innerText = "⏳ In-Browser Optimizer running... Size fix ho raha hai...";
+      loader.innerText = "⏳ De-Blurring text & fixing size under 8.5MB...";
 
       try {
         const { PDFDocument } = PDFLib;
         const pdf = await PDFDocument.create();
 
-        // 8.5 MB Target Budget calculation
+        // 8.5 MB Strict Target Budget
         const totalBudget = 8.5 * 1024 * 1024;
         const pageBudget = totalBudget / docPages.length;
 
-        let quality = 0.75;
-        let maxDim = 1600;
-        if (pageBudget < 250000) { quality = 0.55; maxDim = 1200; }
-        if (pageBudget < 120000) { quality = 0.42; maxDim = 950; }
+        let quality = 0.78;
+        let maxDim = 1700;
+        if (pageBudget < 250000) { quality = 0.58; maxDim = 1250; }
+        if (pageBudget < 120000) { quality = 0.44; maxDim = 980; }
 
         for (let i = 0; i < docPages.length; i++) {
-          loader.innerText = `Compressing & Optimizing page ${i+1} of ${docPages.length}...`;
+          loader.innerText = `Enhancing text clarity on page ${i+1} of ${docPages.length}...`;
           const jpgBytes = await renderOptimizedCanvas(docPages[i], maxDim, quality);
           const img = await pdf.embedJpg(jpgBytes);
           const pg = pdf.addPage([img.width, img.height]);
@@ -291,7 +337,7 @@
         const finalMb = (finalBlob.size / (1024 * 1024)).toFixed(2);
 
         loader.innerText = "✅ Successfully Completed!";
-        document.getElementById('res-size').innerText = `Target Achieved: ${finalMb} MB`;
+        document.getElementById('res-size').innerText = `Target Achieved: ${finalMb} MB (Crystal Clear)`;
         
         const dlBtn = document.getElementById('res-download');
         dlBtn.href = URL.createObjectURL(finalBlob);
@@ -315,8 +361,16 @@
           cvs.width = w;
           cvs.height = h;
           const ctx = cvs.getContext('2d');
+          
+          // Color & contrast pass
           ctx.filter = `brightness(${page.bright}%) contrast(${page.contrast}%) saturate(${page.sat}%)`;
           ctx.drawImage(img, 0, 0, w, h);
+          ctx.filter = 'none';
+
+          // Text De-blur pass
+          const shFactor = (page.sharp || 150) / 100.0;
+          applySharpenKernel(ctx, w, h, shFactor);
+
           cvs.toBlob(blob => blob.arrayBuffer().then(res), 'image/jpeg', q);
         };
         img.src = page.src;
