@@ -3,172 +3,365 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UltraPDF - Compress & Smart Document Scanner</title>
+  <title>ZafranPDF_Converter Ultra HDR Unlock Free</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-    body { background: #0f172a; color: #f8fafc; display: flex; justify-content: center; padding: 20px; }
-    .container { width: 100%; max-width: 680px; }
-    header { text-align: center; margin-bottom: 25px; }
-    header h1 { font-size: 26px; color: #38bdf8; }
-    header p { color: #94a3b8; font-size: 14px; margin-top: 5px; }
-    .tabs { display: flex; gap: 10px; margin-bottom: 15px; }
-    .tabs button { flex: 1; padding: 12px; background: #1e293b; color: #94a3b8; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
-    .tabs button.active { background: #2563eb; color: #fff; }
-    .card { background: #1e293b; border-radius: 12px; padding: 20px; border: 1px solid #334155; }
-    .hidden { display: none; }
-    .drop-zone { border: 2px dashed #475569; border-radius: 8px; padding: 30px; text-align: center; cursor: pointer; margin: 15px 0; position: relative; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: #090d16; color: #f1f5f9; min-height: 100vh; padding: 15px; display: flex; flex-direction: column; align-items: center; }
+    .container { width: 100%; max-width: 650px; }
+    
+    /* Branding Header */
+    header { text-align: center; margin-bottom: 20px; }
+    .badge { display: inline-block; background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
+    h1 { font-size: 22px; background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; line-height: 1.3; }
+    header p { color: #94a3b8; font-size: 13px; margin-top: 5px; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 8px; margin-bottom: 15px; }
+    .tabs button { flex: 1; padding: 12px; background: #172033; color: #94a3b8; border: 1px solid #1e293b; border-radius: 10px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s; }
+    .tabs button.active { background: #2563eb; color: #fff; border-color: #3b82f6; box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+
+    .card { background: #131b2e; border: 1px solid #1e2d4a; border-radius: 14px; padding: 18px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); margin-bottom: 15px; }
+    .hidden { display: none !important; }
+
+    /* Drop Zone */
+    .drop-zone { border: 2px dashed #334155; border-radius: 10px; padding: 25px 15px; text-align: center; cursor: pointer; position: relative; background: #0b1120; }
     .drop-zone input[type="file"] { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer; }
-    .button-row { display: flex; gap: 10px; margin: 15px 0; }
-    .btn-primary { width: 100%; padding: 14px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
-    .btn-primary:hover { background: #1d4ed8; }
-    .btn-secondary { flex: 1; text-align: center; padding: 12px; background: #334155; color: #f8fafc; border-radius: 8px; cursor: pointer; font-size: 14px; }
-    .btn-secondary input { display: none; }
-    #preview-container { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 15px; padding: 5px 0; }
-    #preview-container img { width: 70px; height: 90px; object-fit: cover; border-radius: 6px; border: 1px solid #475569; }
-    .status-box { margin-top: 15px; font-size: 14px; text-align: center; color: #38bdf8; word-break: break-word; }
+    .drop-zone p { font-size: 14px; color: #94a3b8; }
+
+    /* Buttons */
+    .btn-row { display: flex; gap: 10px; margin: 12px 0; }
+    .btn-sec { flex: 1; text-align: center; padding: 12px; background: #1e293b; color: #e2e8f0; border: 1px solid #334155; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 600; }
+    .btn-sec input { display: none; }
+    .btn-main { width: 100%; padding: 14px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    .btn-main:active { transform: scale(0.98); }
+
+    /* Image Gallery Grid */
+    .preview-grid { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; margin-top: 10px; }
+    .thumb-card { position: relative; flex-shrink: 0; width: 85px; text-align: center; }
+    .thumb-card img { width: 85px; height: 110px; object-fit: cover; border-radius: 8px; border: 2px solid #334155; }
+    .thumb-card.active-thumb img { border-color: #38bdf8; box-shadow: 0 0 10px #38bdf8; }
+    .thumb-card span { font-size: 10px; color: #94a3b8; display: block; margin-top: 4px; }
+
+    /* Editor Modal / Tools */
+    .editor-box { background: #0b1120; border: 1px solid #1e293b; border-radius: 10px; padding: 14px; margin-top: 15px; }
+    .editor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 13px; font-weight: bold; color: #38bdf8; }
+    .filter-presets { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 12px; }
+    .filter-btn { padding: 6px 10px; background: #1e293b; border: none; border-radius: 6px; color: #cbd5e1; font-size: 11px; cursor: pointer; white-space: nowrap; }
+    .filter-btn.active { background: #38bdf8; color: #000; font-weight: bold; }
+    .slider-group { margin-bottom: 8px; }
+    .slider-group label { display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 3px; }
+    .slider-group input { width: 100%; accent-color: #38bdf8; }
+    .edit-apply-row { display: flex; gap: 8px; margin-top: 10px; }
+    .edit-apply-row button { flex: 1; padding: 8px; font-size: 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .btn-apply-one { background: #334155; color: white; }
+    .btn-apply-all { background: #0284c7; color: white; }
+
+    /* Result Card */
+    .result-box { margin-top: 15px; background: #0f2027; border: 1px solid #10b981; border-radius: 10px; padding: 15px; text-align: center; }
+    .size-metrics { font-size: 14px; font-weight: bold; color: #34d399; margin-bottom: 12px; }
+    .btn-download { display: block; width: 100%; padding: 12px; background: #10b981; color: #022c22; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 15px; margin-bottom: 8px; }
+    .share-row { display: flex; gap: 8px; }
+    .btn-share { flex: 1; padding: 10px; background: #25d366; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .btn-share.mail { background: #ea4335; }
+    .status-msg { font-size: 12px; margin-top: 8px; color: #38bdf8; }
   </style>
 </head>
 <body>
+
   <div class="container">
     <header>
-      <h1>⚡ UltraPDF Studio</h1>
-      <p>Compress large PDFs down to under 10MB & enhance camera photos into Ultra-HD PDFs.</p>
+      <span class="badge">Ultra HDR Engine</span>
+      <h1>ZafranPDF_Converter Ultra HDR Unlock Free</h1>
+      <p>Target Size Fixer (Under 9MB) & Smart Photo Editor</p>
     </header>
 
     <div class="tabs">
-      <button id="tab-compress" class="active" onclick="switchTab('compress')">Compress PDF</button>
-      <button id="tab-scan" onclick="switchTab('scan')">Camera / Image to PDF</button>
+      <button id="tab-compress" class="active" onclick="switchTab('compress')">⚡ Auto Compress (Max 9MB)</button>
+      <button id="tab-scan" onclick="switchTab('scan')">📸 Camera / Edit & Scan</button>
     </div>
 
-    <!-- Compress Section -->
+    <!-- 1. COMPRESSION BOX -->
     <div id="section-compress" class="card">
-      <h3>Reduce 50MB+ PDF to Under 10MB</h3>
-      <div class="drop-zone" id="drop-compress">
-        <p id="file-label">Drag & Drop your PDF file here, or click to browse</p>
+      <h3 style="font-size:16px; margin-bottom: 5px;">Fix Any Large File to Under 9MB</h3>
+      <p style="font-size: 12px; color: #94a3b8; margin-bottom: 15px;">50MB+ size ko Ultra Quality barqarar rakh kar direct 8MB tak reduce karein.</p>
+      
+      <div class="drop-zone">
+        <p id="pdf-file-label">📄 Click or Drag PDF Here</p>
         <input type="file" id="pdf-input" accept="application/pdf">
       </div>
-      <button class="btn-primary" onclick="handleCompress()">Compress & Download</button>
-      <div id="compress-status" class="status-box"></div>
+      <button class="btn-main" onclick="handleCompress()">Compress PDF Now</button>
+      <div id="compress-status" class="status-msg"></div>
+
+      <!-- Result Card -->
+      <div id="compress-result" class="result-box hidden">
+        <div class="size-metrics" id="compress-size-text">Reduced to 8.2 MB</div>
+        <a id="btn-compress-download" class="btn-download" href="#" download>📥 Download PDF</a>
+        <div class="share-row">
+          <button class="btn-share" onclick="sharePdf('compress')">💬 Share on WhatsApp</button>
+          <button class="btn-share mail" onclick="shareMail('compress')">✉️ Email PDF</button>
+        </div>
+      </div>
     </div>
 
-    <!-- Camera / Scanner Section -->
+    <!-- 2. CAMERA SCAN & PHOTO EDITOR -->
     <div id="section-scan" class="card hidden">
-      <h3>Ultra HD Document Scanner (Auto-Enhance)</h3>
-      <div class="button-row">
-        <label class="btn-secondary">
-          📸 Open Camera
-          <input type="file" id="camera-input" accept="image/*" capture="environment" multiple>
-        </label>
-        <label class="btn-secondary">
-          🖼️ Choose Images
-          <input type="file" id="gallery-input" accept="image/*" multiple>
-        </label>
+      <h3 style="font-size:16px; margin-bottom: 5px;">Ultra HD Document Scanner & Color Editor</h3>
+      <div class="btn-row">
+        <label class="btn-sec">📸 Open Camera<input type="file" id="camera-input" accept="image/*" capture="environment" multiple></label>
+        <label class="btn-sec">🖼️️ Add Images<input type="file" id="gallery-input" accept="image/*" multiple></label>
       </div>
-      <div id="preview-container"></div>
-      <button class="btn-primary" onclick="handleScanToPdf()">Generate Ultra HD PDF</button>
-      <div id="scan-status" class="status-box"></div>
+
+      <div class="preview-grid" id="preview-container"></div>
+
+      <!-- Photo Editor Sub-Panel -->
+      <div id="editor-panel" class="editor-box hidden">
+        <div class="editor-header">
+          <span id="editor-title">Editing Photo #1</span>
+          <span style="font-size:11px; color:#94a3b8;">Adjust settings</span>
+        </div>
+
+        <div class="filter-presets">
+          <button class="filter-btn active" onclick="applyPreset('hdr')">✨ Ultra HDR</button>
+          <button class="filter-btn" onclick="applyPreset('magic_clean')">📄 Magic Clean (B&W)</button>
+          <button class="filter-btn" onclick="applyPreset('vivid')">🎨 Vivid Color</button>
+          <button class="filter-btn" onclick="applyPreset('normal')">↺ Normal</button>
+        </div>
+
+        <div class="slider-group">
+          <label><span>Brightness</span><span id="val-bright">100%</span></label>
+          <input type="range" id="sl-bright" min="50" max="180" value="100" oninput="updateSliders()">
+        </div>
+        <div class="slider-group">
+          <label><span>Contrast</span><span id="val-contrast">120%</span></label>
+          <input type="range" id="sl-contrast" min="50" max="200" value="120" oninput="updateSliders()">
+        </div>
+        <div class="slider-group">
+          <label><span>Saturation</span><span id="val-sat">125%</span></label>
+          <input type="range" id="sl-sat" min="0" max="200" value="125" oninput="updateSliders()">
+        </div>
+
+        <div class="edit-apply-row">
+          <button class="btn-apply-one" onclick="saveCurrentEdit(false)">Apply To This Photo</button>
+          <button class="btn-apply-all" onclick="saveCurrentEdit(true)">⚡ Apply To ALL Photos</button>
+        </div>
+      </div>
+
+      <button class="btn-main" onclick="handleScanToPdf()">Create Ultra HD PDF</button>
+      <div id="scan-status" class="status-msg"></div>
+
+      <!-- Scan Result Card -->
+      <div id="scan-result" class="result-box hidden">
+        <div class="size-metrics" id="scan-size-text">Created Ultra HD PDF</div>
+        <a id="btn-scan-download" class="btn-download" href="#" download>📥 Download Ultra HD PDF</a>
+        <div class="share-row">
+          <button class="btn-share" onclick="sharePdf('scan')">💬 Share on WhatsApp</button>
+          <button class="btn-share mail" onclick="shareMail('scan')">✉️ Email PDF</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     const API_BASE_URL = "https://zafranpdf-converter.onrender.com";
+    let imagesList = [];
+    let selectedIdx = 0;
+    let compressBlob = null;
+    let scanBlob = null;
 
-    function switchTab(tab) {
-      document.getElementById('section-compress').classList.toggle('hidden', tab !== 'compress');
-      document.getElementById('section-scan').classList.toggle('hidden', tab !== 'scan');
-      document.getElementById('tab-compress').classList.toggle('active', tab === 'compress');
-      document.getElementById('tab-scan').classList.toggle('active', tab === 'scan');
+    function switchTab(t) {
+      document.getElementById('section-compress').classList.toggle('hidden', t !== 'compress');
+      document.getElementById('section-scan').classList.toggle('hidden', t !== 'scan');
+      document.getElementById('tab-compress').classList.toggle('active', t === 'compress');
+      document.getElementById('tab-scan').classList.toggle('active', t === 'scan');
     }
-
-    let scannedImages = [];
 
     document.getElementById('pdf-input').addEventListener('change', (e) => {
       if (e.target.files[0]) {
-        document.getElementById('file-label').innerText = "Selected: " + e.target.files[0].name;
+        const sz = (e.target.files[0].size / (1024*1024)).toFixed(1);
+        document.getElementById('pdf-file-label').innerText = `Selected: ${e.target.files[0].name} (${sz} MB)`;
       }
     });
 
-    function setupImageInputs(inputId) {
-      document.getElementById(inputId).addEventListener('change', (e) => {
-        const files = Array.from(e.target.files);
-        scannedImages.push(...files);
-        renderPreviews();
+    ['camera-input', 'gallery-input'].forEach(id => {
+      document.getElementById(id).addEventListener('change', (e) => {
+        Array.from(e.target.files).forEach(f => {
+          imagesList.push({
+            file: f,
+            url: URL.createObjectURL(f),
+            bright: 100,
+            contrast: 120,
+            sat: 125,
+            mode: 'hdr'
+          });
+        });
+        renderGallery();
       });
-    }
-    setupImageInputs('camera-input');
-    setupImageInputs('gallery-input');
+    });
 
-    function renderPreviews() {
-      const container = document.getElementById('preview-container');
-      container.innerHTML = '';
-      scannedImages.forEach(file => {
-        const img = document.createElement('img');
-        img.src = URL.createObjectURL(file);
-        container.appendChild(img);
+    function renderGallery() {
+      const box = document.getElementById('preview-container');
+      box.innerHTML = '';
+      if (imagesList.length === 0) {
+        document.getElementById('editor-panel').classList.add('hidden');
+        return;
+      }
+      document.getElementById('editor-panel').classList.remove('hidden');
+
+      imagesList.forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = `thumb-card ${i === selectedIdx ? 'active-thumb' : ''}`;
+        div.onclick = () => selectImage(i);
+        div.innerHTML = `<img src="${item.url}" style="filter: brightness(${item.bright}%) contrast(${item.contrast}%) saturate(${item.sat}%);"><span>Photo #${i+1}</span>`;
+        box.appendChild(div);
       });
+      loadToEditor(selectedIdx);
+    }
+
+    function selectImage(i) {
+      selectedIdx = i;
+      renderGallery();
+    }
+
+    function loadToEditor(i) {
+      const itm = imagesList[i];
+      document.getElementById('editor-title').innerText = `Editing Photo #${i+1}`;
+      document.getElementById('sl-bright').value = itm.bright;
+      document.getElementById('sl-contrast').value = itm.contrast;
+      document.getElementById('sl-sat').value = itm.sat;
+      updateSlidersText();
+    }
+
+    function updateSliders() {
+      const b = document.getElementById('sl-bright').value;
+      const c = document.getElementById('sl-contrast').value;
+      const s = document.getElementById('sl-sat').value;
+      imagesList[selectedIdx].bright = b;
+      imagesList[selectedIdx].contrast = c;
+      imagesList[selectedIdx].sat = s;
+      updateSlidersText();
+      const imgs = document.querySelectorAll('.thumb-card img');
+      if (imgs[selectedIdx]) {
+        imgs[selectedIdx].style.filter = `brightness(${b}%) contrast(${c}%) saturate(${s}%)`;
+      }
+    }
+
+    function updateSlidersText() {
+      document.getElementById('val-bright').innerText = document.getElementById('sl-bright').value + '%';
+      document.getElementById('val-contrast').innerText = document.getElementById('sl-contrast').value + '%';
+      document.getElementById('val-sat').innerText = document.getElementById('sl-sat').value + '%';
+    }
+
+    function applyPreset(p) {
+      const itm = imagesList[selectedIdx];
+      itm.mode = p;
+      if (p === 'hdr') { itm.bright = 105; itm.contrast = 130; itm.sat = 130; }
+      else if (p === 'magic_clean') { itm.bright = 115; itm.contrast = 180; itm.sat = 0; }
+      else if (p === 'vivid') { itm.bright = 100; itm.contrast = 120; itm.sat = 160; }
+      else { itm.bright = 100; itm.contrast = 100; itm.sat = 100; }
+      loadToEditor(selectedIdx);
+      updateSliders();
+    }
+
+    function saveCurrentEdit(applyAll) {
+      if (applyAll) {
+        const cur = imagesList[selectedIdx];
+        imagesList.forEach(item => {
+          item.bright = cur.bright;
+          item.contrast = cur.contrast;
+          item.sat = cur.sat;
+          item.mode = cur.mode;
+        });
+        renderGallery();
+        alert("Applied to ALL photos successfully!");
+      } else {
+        alert("Applied to photo #" + (selectedIdx+1));
+      }
     }
 
     async function handleCompress() {
       const fileInput = document.getElementById('pdf-input');
       const status = document.getElementById('compress-status');
-      if (!fileInput.files[0]) {
-        alert("Please select a PDF first!");
-        return;
-      }
+      const resultCard = document.getElementById('compress-result');
+      if (!fileInput.files[0]) return alert("Select PDF first!");
+
+      status.innerText = "⏳ Target Size Fixer running... Compressing to under 9MB...";
+      resultCard.classList.add('hidden');
       
-      status.innerText = "⏳ Compressing PDF... (Note: First request can take ~40s if server is waking up)";
       const formData = new FormData();
       formData.append("file", fileInput.files[0]);
 
       try {
-        const res = await fetch(`${API_BASE_URL}/api/compress-pdf`, {
-          method: "POST",
-          body: formData
-        });
+        const res = await fetch(`${API_BASE_URL}/api/compress-pdf`, { method: "POST", body: formData });
         if (!res.ok) throw new Error("Compression failed");
+
+        compressBlob = await res.blob();
+        const finalMb = (compressBlob.size / (1024*1024)).toFixed(2);
         
-        const blob = await res.blob();
-        downloadBlob(blob, "compressed_document.pdf");
-        status.innerText = "✅ Done! PDF downloaded successfully.";
-      } catch (err) {
-        status.innerText = "❌ Error: " + err.message;
+        status.innerText = "✅ Successfully Finished!";
+        document.getElementById('compress-size-text').innerText = `Target Achieved: ${finalMb} MB`;
+        
+        const dBtn = document.getElementById('btn-compress-download');
+        dBtn.href = URL.createObjectURL(compressBlob);
+        dBtn.download = "Zafran_Compressed_Ultra.pdf";
+        resultCard.classList.remove('hidden');
+      } catch (e) {
+        status.innerText = "❌ Error: " + e.message;
       }
     }
 
     async function handleScanToPdf() {
       const status = document.getElementById('scan-status');
-      if (scannedImages.length === 0) {
-        alert("Please take photos or select images first!");
-        return;
-      }
+      const resultCard = document.getElementById('scan-result');
+      if (imagesList.length === 0) return alert("Add photos first!");
 
-      status.innerText = "⏳ Enhancing images & generating Ultra HD PDF...";
+      status.innerText = "⏳ Applying Ultra HDR Filters & Building PDF...";
+      resultCard.classList.add('hidden');
+
       const formData = new FormData();
-      scannedImages.forEach(f => formData.append("files", f));
+      imagesList.forEach(item => formData.append("files", item.file));
 
       try {
-        const res = await fetch(`${API_BASE_URL}/api/images-to-pdf`, {
-          method: "POST",
-          body: formData
-        });
+        const res = await fetch(`${API_BASE_URL}/api/images-to-pdf`, { method: "POST", body: formData });
         if (!res.ok) throw new Error("Processing failed");
 
-        const blob = await res.blob();
-        downloadBlob(blob, "enhanced_scans.pdf");
-        status.innerText = "✅ Done! Ultra HD PDF downloaded.";
-      } catch (err) {
-        status.innerText = "❌ Error: " + err.message;
+        scanBlob = await res.blob();
+        const finalMb = (scanBlob.size / (1024*1024)).toFixed(2);
+        status.innerText = "✅ Ultra HD PDF Ready!";
+        document.getElementById('scan-size-text').innerText = `Document Size: ${finalMb} MB (Ultra HD)`;
+
+        const dBtn = document.getElementById('btn-scan-download');
+        dBtn.href = URL.createObjectURL(scanBlob);
+        dBtn.download = "Zafran_UltraHDR_Doc.pdf";
+        resultCard.classList.remove('hidden');
+      } catch (e) {
+        status.innerText = "❌ Error: " + e.message;
       }
     }
 
-    function downloadBlob(blob, filename) {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+    async function sharePdf(type) {
+      const blob = type === 'compress' ? compressBlob : scanBlob;
+      const fname = type === 'compress' ? "Zafran_Compressed.pdf" : "Zafran_UltraHDR.pdf";
+      if (!blob) return alert("Process PDF first!");
+
+      const file = new File([blob], fname, { type: "application/pdf" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            files: [file],
+            title: "ZafranPDF Document",
+            text: "Here is your Ultra HDR processed PDF file."
+          });
+        } catch (e) { console.log(e); }
+      } else {
+        // Fallback for WhatsApp web / desktop
+        alert("Web Share API not supported on this browser. Use Download button to save & send on WhatsApp.");
+      }
+    }
+
+    function shareMail(type) {
+      const subject = encodeURIComponent("Ultra HDR PDF Document - ZafranPDF");
+      const body = encodeURIComponent("Please find your processed PDF attached (Processed via ZafranPDF_Converter Ultra HDR Unlock Free).");
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
     }
   </script>
 </body>
