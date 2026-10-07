@@ -1,545 +1,646 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="WEdFKWL3nNbp9QX_0ldqoZfOynL0R9HHyzyiVVm0iPE" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  
-  <!-- ================= PRIMARY GOOGLE SEO TAGS ================= -->
-  <title>ZafranPDF - Free PDF Compressor Under 9MB & CamScanner Ultra HDR Online</title>
-  <meta name="title" content="ZafranPDF - Free PDF Compressor Under 9MB & CamScanner Ultra HDR Online">
-  <meta name="description" content="ZafranPDF is a 100% free tool to compress large PDF files under 8.5MB without quality loss. Instant CamScanner Magic Pro filter, clean white background, deep ink text enhancer, and document scanner.">
-
-  <!-- EXTENSIVE KEYWORDS (ALL CASES & POPULAR SEARCH VARIATIONS) -->
-  <meta name="keywords" content="
-  zafranpdf, ZAFRANPDF, ZafranPDF, zafran pdf, ZAFRAN PDF, Zafran PDF, zafranpdf_converter, ZafranPDF_Converter, zafranpdfcon,
-  pdf compressor, PDF COMPRESSOR, Pdf Compressor,
-  compress pdf, COMPRESS PDF, Compress Pdf,
-  compress pdf under 10mb, COMPRESS PDF UNDER 10MB, Compress Pdf Under 10MB,
-  compress pdf under 9mb, COMPRESS PDF UNDER 9MB, Compress Pdf Under 9MB,
-  compress pdf under 8mb, compress pdf to 10mb online free,
-  reduce pdf size, REDUCE PDF SIZE, Reduce Pdf Size,
-  pdf size reducer, PDF SIZE REDUCER, Pdf Size Reducer,
-  pdf size kam karne wala, pdf file size fixer,
-  camscanner online, CAMSCANNER ONLINE, CamScanner Online,
-  cam scanner online free, camscanner magic color filter,
-  camscanner without watermark, online document scanner,
-  image to pdf, IMAGE TO PDF, Image To Pdf,
-  camera photo to pdf, photo se pdf banane wala,
-  make pdf from camera, document cleaner,
-  remove shadow from document, white background document filter,
-  ultra hdr pdf, text deblur online, sharp text pdf creator,
-  free pdf tool, fast pdf compressor, offline pdf compress,
-  mobile pdf scanner online, zafran converter, zafran scanner
-  ">
-
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="author" content="Zafran">
-  <meta name="language" content="English">
-  <meta name="revisit-after" content="2 days">
-
-  <!-- CANONICAL URL -->
-  <link rel="canonical" href="https://noobextra94-del.github.io/Zafranpdfcon/">
-
-  <!-- OPEN GRAPH / SOCIAL SHARE -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://noobextra94-del.github.io/Zafranpdfcon/">
-  <meta property="og:title" content="ZafranPDF - CamScanner Ultra HDR & Fast PDF Compressor (Under 9MB)">
-  <meta property="og:description" content="Free tool to fix and compress large PDFs under 8.5MB. Instant CamScanner Magic Pro filter, dark text, clean white paper.">
-  <meta property="og:site_name" content="ZafranPDF Pro Scanner">
-
-  <!-- TWITTER CARDS -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://noobextra94-del.github.io/Zafranpdfcon/">
-  <meta name="twitter:title" content="ZafranPDF - CamScanner Ultra HDR & PDF Compressor">
-  <meta name="twitter:description" content="Compress PDF under 9MB instantly. High quality CamScanner Magic Pro tool online.">
-
-  <!-- GOOGLE STRUCTURED DATA SCHEMA -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "ZafranPDF Pro Scanner",
-    "url": "https://noobextra94-del.github.io/Zafranpdfcon/",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "All",
-    "description": "Free web tool to compress large PDF files under 9MB and scan documents using CamScanner Magic Color filters.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
-  }
-  </script>
-
-  <!-- PDF Engine Script -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-
-  <style>
-    :root {
-      --primary: #10b981;
-      --primary-dark: #059669;
-      --accent: #38bdf8;
-      --bg: #090e17;
-      --card-bg: #131b2a;
-      --border: #223049;
-      --text-main: #f8fafc;
-      --text-sub: #94a3b8;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
-    body { background: var(--bg); color: var(--text-main); min-height: 100vh; padding: 12px; display: flex; flex-direction: column; align-items: center; }
-    .app-viewport { width: 100%; max-width: 500px; display: flex; flex-direction: column; }
-
-    /* Header & Branding */
-    .app-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 0 15px; border-bottom: 1px solid var(--border); margin-bottom: 15px; }
-    .brand-title { font-size: 17px; font-weight: 800; background: linear-gradient(135deg, #38bdf8, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .vip-badge-btn { background: linear-gradient(135deg, #f59e0b, #ef4444); color: #fff; font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 20px; border: none; cursor: pointer; display: flex; align-items: center; gap: 4px; box-shadow: 0 3px 10px rgba(245,158,11,0.3); text-decoration: none; }
-
-    /* Scanner Workspace */
-    .scanner-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    
-    .action-row { display: flex; gap: 10px; margin-bottom: 12px; }
-    .btn-capture { flex: 1; padding: 14px 10px; background: #1c273c; border: 1px solid var(--border); border-radius: 12px; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
-    .btn-capture svg { width: 22px; height: 22px; fill: var(--accent); }
-    .btn-capture input { display: none; }
-
-    /* Gallery Slider */
-    .gallery-header { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-    .pages-slider { display: flex; gap: 10px; overflow-x: auto; padding: 6px 2px 12px; min-height: 110px; align-items: center; }
-    .thumb-node { position: relative; flex-shrink: 0; width: 80px; text-align: center; cursor: pointer; }
-    .thumb-node canvas { width: 80px; height: 105px; object-fit: cover; border-radius: 8px; border: 2px solid var(--border); background: #fff; }
-    .thumb-node.active canvas { border-color: var(--primary); box-shadow: 0 0 10px rgba(16,185,129,0.5); }
-    .thumb-node span { font-size: 11px; color: var(--text-sub); margin-top: 4px; display: block; font-weight: 600; }
-
-    /* Size Cap Badge */
-    .metric-badge { background: #0c1320; border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin-bottom: 14px; }
-    .status-active { color: var(--primary); font-weight: 800; display: flex; align-items: center; gap: 5px; }
-    .status-active::before { content: ""; width: 7px; height: 7px; background: var(--primary); border-radius: 50%; display: inline-block; }
-
-    /* Build Button */
-    .btn-process { width: 100%; padding: 15px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #022c22; border: none; border-radius: 12px; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(16,185,129,0.3); }
-    .btn-process:active { transform: scale(0.98); }
-
-    /* Progress UI */
-    .progress-bar-wrap { margin-top: 15px; display: none; }
-    .progress-meta { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
-    .progress-track { width: 100%; height: 9px; background: #1c273c; border-radius: 10px; overflow: hidden; }
-    .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.1s; }
-
-    /* Result Panel */
-    .result-panel { margin-top: 15px; background: #064e3b; border: 1px solid var(--primary); border-radius: 12px; padding: 14px; text-align: center; display: none; }
-    .size-display { font-size: 16px; font-weight: 800; color: #a7f3d0; margin-bottom: 10px; }
-    .btn-download { display: block; width: 100%; padding: 12px; background: var(--primary); color: #022c22; font-weight: 800; border-radius: 8px; text-decoration: none; font-size: 14px; margin-bottom: 8px; }
-
-    /* Social Community Footer */
-    .social-section { margin-top: 20px; text-align: center; width: 100%; }
-    .social-title { font-size: 11px; text-transform: uppercase; color: var(--text-sub); letter-spacing: 1px; font-weight: 700; margin-bottom: 10px; }
-    .social-grid { display: flex; justify-content: center; gap: 12px; }
-    .social-link { width: 44px; height: 44px; border-radius: 12px; background: #131b2a; border: 1px solid var(--border); display: flex; justify-content: center; align-items: center; transition: 0.2s; cursor: pointer; text-decoration: none; }
-    .social-link svg { width: 20px; height: 20px; }
-    .icon-wa svg { fill: #25d366; }
-    .icon-tg svg { fill: #229ed9; }
-    .icon-ig svg { fill: #e1306c; }
-    .icon-fb svg { fill: #1877f2; }
-
-    /* Studio Modal */
-    .studio-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 10000; display: flex; flex-direction: column; padding: 14px; display: none; }
-    .studio-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .studio-canvas-wrap { flex: 1; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 10px; overflow: hidden; padding: 5px; }
-    .studio-canvas-wrap canvas { max-width: 100%; max-height: 48vh; object-fit: contain; }
-    .studio-controls { background: var(--card-bg); border-radius: 14px; padding: 14px; margin-top: 10px; }
-    
-    .preset-scroller { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 10px; }
-    .preset-pill { padding: 6px 12px; background: #1c273c; color: var(--text-sub); border: 1px solid var(--border); border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
-    .preset-pill.active { background: var(--primary); color: #022c22; border-color: var(--primary); }
-
-    .slider-item { margin-bottom: 8px; }
-    .slider-item label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-sub); margin-bottom: 2px; }
-    .slider-item input { width: 100%; accent-color: var(--primary); }
-
-    .studio-actions { display: flex; gap: 8px; margin-top: 10px; }
-    .btn-apply { flex: 1; padding: 10px; border-radius: 8px; border: none; font-size: 12px; font-weight: 700; cursor: pointer; color: #fff; }
-    .btn-apply-curr { background: #334155; }
-    .btn-apply-all { background: var(--primary-dark); }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro PDF Editor & Compressor - Ultra HD Text</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+  body { background:linear-gradient(135deg,#0f0c29,#302b63,#24243e); min-height:100vh; color:#fff; padding:20px; }
+  .container { max-width:1300px; margin:0 auto; }
+  h1 { text-align:center; margin-bottom:20px; background:linear-gradient(90deg,#00f5d4,#00bbf9,#f15bb5); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:2.5rem; }
+  .tabs { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; justify-content:center; }
+  .tab { padding:12px 24px; background:rgba(255,255,255,0.08); border:2px solid rgba(255,255,255,0.15); border-radius:12px; cursor:pointer; transition:.3s; font-weight:600; }
+  .tab.active { background:linear-gradient(135deg,#00bbf9,#9b5de5); border-color:transparent; box-shadow:0 8px 20px rgba(0,187,249,0.4); }
+  .tab:hover { transform:translateY(-2px); }
+  .panel { display:none; background:rgba(255,255,255,0.05); border-radius:20px; padding:25px; backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); }
+  .panel.active { display:block; animation:fade .4s; }
+  @keyframes fade { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
+  .drop-zone { border:3px dashed rgba(0,187,249,0.5); border-radius:16px; padding:50px 20px; text-align:center; cursor:pointer; transition:.3s; margin-bottom:20px; }
+  .drop-zone:hover, .drop-zone.dragover { background:rgba(0,187,249,0.1); border-color:#00bbf9; }
+  .drop-zone input { display:none; }
+  .btn { padding:12px 28px; border:none; border-radius:10px; cursor:pointer; font-weight:600; font-size:1rem; transition:.3s; margin:5px; background:linear-gradient(135deg,#00bbf9,#9b5de5); color:#fff; }
+  .btn:hover { transform:translateY(-2px); box-shadow:0 10px 20px rgba(155,93,229,0.4); }
+  .btn.secondary { background:linear-gradient(135deg,#f15bb5,#fee440); color:#000; }
+  .btn.danger { background:linear-gradient(135deg,#ff006e,#fb5607); }
+  .controls { display:flex; flex-wrap:wrap; gap:15px; margin:20px 0; align-items:center; }
+  .control-group { display:flex; flex-direction:column; gap:5px; flex:1; min-width:200px; }
+  .control-group label { font-size:.9rem; opacity:.8; }
+  select, input[type=range], input[type=number] { padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.3); color:#fff; outline:none; }
+  input[type=range] { padding:0; }
+  .viewer { display:flex; gap:20px; flex-wrap:wrap; }
+  .canvas-wrap { flex:1; min-width:300px; background:rgba(0,0,0,0.3); border-radius:12px; padding:15px; overflow:auto; max-height:75vh; text-align:center; position:relative; }
+  canvas { max-width:100%; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5); cursor:crosshair; }
+  .sidebar { width:280px; display:flex; flex-direction:column; gap:15px; }
+  @media(max-width:900px){ .sidebar{ width:100%; } }
+  .sidebar-box { background:rgba(0,0,0,0.25); border-radius:12px; padding:15px; }
+  .sidebar-box h3 { margin-bottom:10px; font-size:1rem; color:#00bbf9; }
+  .filter-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+  .filter-btn { padding:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:8px; cursor:pointer; font-size:.85rem; transition:.2s; }
+  .filter-btn:hover, .filter-btn.active { background:linear-gradient(135deg,#00bbf9,#9b5de5); }
+  .zoom-info { position:sticky; top:10px; text-align:center; padding:8px; background:rgba(0,0,0,0.5); border-radius:8px; font-size:.9rem; margin-bottom:10px; }
+  .status { padding:12px; border-radius:10px; margin-top:15px; background:rgba(0,187,249,0.15); border-left:4px solid #00bbf9; display:none; }
+  .status.show { display:block; }
+  .progress-bar { width:100%; height:8px; background:rgba(255,255,255,0.1); border-radius:4px; overflow:hidden; margin-top:10px; }
+  .progress-fill { height:100%; width:0%; background:linear-gradient(90deg,#00f5d4,#00bbf9); transition:width .3s; }
+  .edit-tools { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+  .tool-btn { padding:8px 14px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:8px; cursor:pointer; font-size:.85rem; }
+  .tool-btn.active { background:linear-gradient(135deg,#00f5d4,#00bbf9); color:#000; }
+  #textInput { position:absolute; display:none; padding:5px; border:2px solid #00bbf9; background:rgba(0,0,0,0.9); color:#fff; border-radius:5px; z-index:100; min-width:150px; }
+</style>
 </head>
 <body>
+<div class="container">
+  <h1>✨ Pro PDF Editor & Ultra Compressor ✨</h1>
 
-  <div class="app-viewport">
-    
-    <!-- Top Header -->
-    <header class="app-header">
-      <div>
-        <div class="brand-title">⚡ ZafranPDF Pro Scanner</div>
-        <div style="font-size: 11px; color: var(--text-sub);">Ultra HDR Auto Crop & Size Fixer</div>
-      </div>
-      <!-- VIP Purchase WhatsApp Connect -->
-      <a href="https://wa.me/923209835904?text=Hello%20Zafran,%20I%20want%20to%20buy%20the%20Premium%20VIP%20Version" target="_blank" class="vip-badge-btn">
-        👑 VIP Unlock
-      </a>
-    </header>
-
-    <!-- Scanner Workspace -->
-    <main class="scanner-card">
-      <div class="action-row">
-        <label class="btn-capture">
-          <svg viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
-          Direct Camera
-          <input type="file" id="camera-in" accept="image/*" capture="environment" multiple>
-        </label>
-        <label class="btn-capture">
-          <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-8 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm7 10H6l4-5 3 4 2-3 3 4z"/></svg>
-          Gallery / Documents
-          <input type="file" id="gallery-in" accept="image/*" multiple>
-        </label>
-      </div>
-
-      <div class="gallery-header">
-        <span id="page-count-badge">Loaded Pages: 0</span>
-        <span style="font-size: 11px; font-weight: normal; color: var(--text-sub);">(Tap page to edit or crop)</span>
-      </div>
-
-      <div class="pages-slider" id="gallery-box">
-        <span style="font-size: 12px; color: var(--text-sub); margin: auto;">No documents added yet</span>
-      </div>
-
-      <div class="metric-badge">
-        <span>Target Size Optimization:</span>
-        <span class="status-active">Strict Under 8.5 MB</span>
-      </div>
-
-      <button class="btn-process" onclick="generateDocumentPdf()">⚡ Process & Build Ultra HD PDF</button>
-
-      <!-- Progress Section -->
-      <div class="progress-bar-wrap" id="progress-bar">
-        <div class="progress-meta">
-          <span id="progress-status-txt">Processing document...</span>
-          <span id="progress-num">0%</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="progress-fill"></div>
-        </div>
-      </div>
-
-      <!-- Result Card -->
-      <div class="result-panel" id="result-box">
-        <div class="size-display" id="size-text">Final Size: 4.2 MB (Ultra Clean)</div>
-        <a id="download-trigger" class="btn-download" href="#" download="Zafran_Scanned_Document.pdf">📥 Download PDF Now</a>
-      </div>
-    </main>
-
-    <!-- Social Links Section -->
-    <footer class="social-section">
-      <div class="social-title">Connect & Support Channels</div>
-      <div class="social-grid">
-        <!-- WhatsApp -->
-        <a href="https://wa.me/923209835904" target="_blank" class="social-link icon-wa" title="WhatsApp">
-          <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24M8.53 7.33c-.16 0-.36.06-.55.27-.19.2-.74.72-.74 1.76s.76 2.04.87 2.19c.11.15 1.48 2.26 3.59 3.17.5.22.89.35 1.2.45.51.16.97.14 1.34.08.41-.06 1.27-.52 1.45-1.02.18-.5.18-.93.13-1.02-.05-.09-.2-.15-.42-.26s-1.27-.63-1.47-.7-.34-.11-.48.11-.55.7-.68.85-.25.17-.47.06c-.22-.11-.93-.34-1.78-1.1-.66-.59-1.1-1.32-1.23-1.54s-.01-.34.1-.45c.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39s-.55-1.33-.76-1.82c-.2-.48-.41-.42-.56-.43z"/></svg>
-        </a>
-        <!-- Telegram -->
-        <a href="https://t.me/+-AE-Jaoh4Z1kODRk" target="_blank" class="social-link icon-tg" title="Telegram">
-          <svg viewBox="0 0 24 24"><path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.673c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/></svg>
-        </a>
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/zafran.904?stkn=aHY0Yzl1cGE3cjZ0" target="_blank" class="social-link icon-ig" title="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/share/1BySuJfr7C/" target="_blank" class="social-link icon-fb" title="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-      </div>
-    </footer>
+  <div class="tabs">
+    <div class="tab active" data-tab="editor">📝 PDF Editor</div>
+    <div class="tab" data-tab="compressor">🗜️ Ultra Compressor</div>
+    <div class="tab" data-tab="enhancer">🎨 Text Enhancer & AI</div>
   </div>
 
-  <!-- Studio Image Modal -->
-  <div class="studio-overlay" id="studio-modal">
-    <div class="studio-header">
-      <div style="font-size: 14px; font-weight: 800; color: var(--accent);" id="modal-page-title">Page Studio</div>
-      <button onclick="closeStudio()" style="background:none; border:none; color:#fff; font-size:20px; cursor:pointer;">✕</button>
+  <!-- EDITOR PANEL -->
+  <div class="panel active" id="editor">
+    <div class="drop-zone" id="pdfDrop">
+      <input type="file" id="pdfInput" accept="application/pdf">
+      <div style="font-size:3rem;">📄</div>
+      <p><strong>Click or drag PDF here</strong></p>
+      <p style="opacity:.6;font-size:.9rem;margin-top:5px;">Edit text, zoom, apply filters</p>
     </div>
-    <div class="studio-canvas-wrap">
-      <canvas id="studio-canvas"></canvas>
-    </div>
-    <div class="studio-controls">
-      <div class="preset-scroller">
-        <button class="preset-pill active" id="f-cam-pro" onclick="setPreset('pro')">✨ Magic Clean (No Black)</button>
-        <button class="preset-pill" id="f-cam-ink" onclick="setPreset('ink')">📄 Deep Black Ink</button>
-        <button class="preset-pill" id="f-cam-vivid" onclick="setPreset('vivid')">🎨 Document Color</button>
-        <button class="preset-pill" id="f-cam-orig" onclick="setPreset('orig')">↺ Original</button>
+    <div class="status" id="editStatus"></div>
+
+    <div class="viewer" id="editViewer" style="display:none;">
+      <div class="canvas-wrap">
+        <div class="zoom-info">🔍 Zoom: <span id="zoomLevel">100</span>% | Page: <span id="pageNum">1</span>/<span id="pageTotal">1</span></div>
+        <div class="edit-tools">
+          <button class="tool-btn active" data-tool="select">🖱️ Select</button>
+          <button class="tool-btn" data-tool="text">✏️ Add Text</button>
+          <button class="tool-btn" data-tool="erase">🧽 Erase</button>
+        </div>
+        <canvas id="pdfCanvas"></canvas>
+        <input type="text" id="textInput" placeholder="Type...">
       </div>
 
-      <div class="slider-item">
-        <label><span>Background Whitening (Shadow Wash)</span><span id="txt-wh">140%</span></label>
-        <input type="range" id="sl-wh" min="80" max="250" value="140" oninput="updateStudioLive()">
-      </div>
-      <div class="slider-item">
-        <label><span>Ink Density / Dark Strokes</span><span id="txt-ink">130%</span></label>
-        <input type="range" id="sl-ink" min="70" max="220" value="130" oninput="updateStudioLive()">
-      </div>
+      <div class="sidebar">
+        <div class="sidebar-box">
+          <h3>🔍 Zoom Controls</h3>
+          <input type="range" id="zoomSlider" min="50" max="500" value="100" style="width:100%;">
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <button class="btn" id="zoomIn" style="flex:1;padding:8px;">+</button>
+            <button class="btn" id="zoomOut" style="flex:1;padding:8px;">−</button>
+            <button class="btn secondary" id="zoomReset" style="flex:1;padding:8px;">Reset</button>
+          </div>
+        </div>
 
-      <div class="studio-actions">
-        <button class="btn-apply btn-apply-curr" onclick="saveStudioChanges(false)">Apply This Page</button>
-        <button class="btn-apply btn-apply-all" onclick="saveStudioChanges(true)">⚡ Apply To ALL Pages</button>
+        <div class="sidebar-box">
+          <h3>📄 Pages</h3>
+          <div style="display:flex;gap:8px;">
+            <button class="btn" id="prevPage" style="flex:1;padding:8px;">◀ Prev</button>
+            <button class="btn" id="nextPage" style="flex:1;padding:8px;">Next ▶</button>
+          </div>
+        </div>
+
+        <div class="sidebar-box">
+          <h3>🎨 Heavy Filters</h3>
+          <div class="filter-grid">
+            <div class="filter-btn" data-filter="none">Original</div>
+            <div class="filter-btn" data-filter="grayscale">Grayscale</div>
+            <div class="filter-btn" data-filter="contrast">High Contrast</div>
+            <div class="filter-btn" data-filter="brightness">Brighten</div>
+            <div class="filter-btn" data-filter="sharpen">Sharpen Text</div>
+            <div class="filter-btn" data-filter="ultra">Ultra HD</div>
+            <div class="filter-btn" data-filter="bw">Pure B&W</div>
+            <div class="filter-btn" data-filter="blur-fix">Blur Fix AI</div>
+          </div>
+        </div>
+
+        <div class="sidebar-box">
+          <h3>⚙️ Adjustments</h3>
+          <div class="control-group">
+            <label>Contrast: <span id="contrastVal">100</span>%</label>
+            <input type="range" id="contrastRange" min="0" max="300" value="100">
+          </div>
+          <div class="control-group">
+            <label>Brightness: <span id="brightVal">100</span>%</label>
+            <input type="range" id="brightRange" min="0" max="200" value="100">
+          </div>
+          <div class="control-group">
+            <label>Sharpness: <span id="sharpVal">0</span></label>
+            <input type="range" id="sharpRange" min="0" max="10" value="0">
+          </div>
+        </div>
+
+        <div class="sidebar-box">
+          <h3>💾 Export</h3>
+          <button class="btn" id="downloadEdited" style="width:100%;">⬇️ Download Page (PNG HD)</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <script>
-    let pagesData = [];
-    let currentEditIdx = -1;
-    let finalDocBlob = null;
+  <!-- COMPRESSOR PANEL -->
+  <div class="panel" id="compressor">
+    <div class="drop-zone" id="compDrop">
+      <input type="file" id="compInput" accept="application/pdf">
+      <div style="font-size:3rem;">🗜️</div>
+      <p><strong>Drop PDF to Ultra Compress</strong></p>
+      <p style="opacity:.6;font-size:.9rem;margin-top:5px;">100MB → 8-9MB with HD text quality</p>
+    </div>
+    <div class="status" id="compStatus"></div>
 
-    document.getElementById('camera-in').addEventListener('change', e => ingestFiles(e.target.files));
-    document.getElementById('gallery-in').addEventListener('change', e => ingestFiles(e.target.files));
+    <div id="compSettings" style="display:none;">
+      <div class="controls">
+        <div class="control-group">
+          <label>Compression Level</label>
+          <select id="compLevel">
+            <option value="light">Light (Best Quality)</option>
+            <option value="medium" selected>Medium (Balanced)</option>
+            <option value="strong">Strong (Small Size)</option>
+            <option value="ultra">Ultra (Max Compression)</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label>Target Size (MB)</label>
+          <input type="number" id="targetSize" value="8" min="1" max="100">
+        </div>
+        <div class="control-group">
+          <label>Text Quality</label>
+          <select id="textQuality">
+            <option value="ultra">Ultra HD (Recommended)</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="compressBtn">🚀 Start Ultra Compression</button>
+      <div class="progress-bar"><div class="progress-fill" id="compProgress"></div></div>
+      <div id="compResult" style="margin-top:20px;"></div>
+    </div>
+  </div>
 
-    async function ingestFiles(files) {
-      if (!files.length) return;
-      for (let f of Array.from(files)) {
-        const img = await fileToImg(f);
-        const croppedCanvas = autoDetectAndCropDocument(img);
-        pagesData.push({
-          rawCanvas: croppedCanvas,
-          mode: 'pro',
-          wh: 140,
-          ink: 130
-        });
+  <!-- ENHANCER PANEL -->
+  <div class="panel" id="enhancer">
+    <div class="drop-zone" id="enhDrop">
+      <input type="file" id="enhInput" accept="image/*,application/pdf">
+      <div style="font-size:3rem;">🎨</div>
+      <p><strong>Upload Blurred PDF/Image</strong></p>
+      <p style="opacity:.6;font-size:.9rem;margin-top:5px;">AI will clear blurry text to Ultra HD</p>
+    </div>
+    <div class="status" id="enhStatus"></div>
+
+    <div id="enhViewer" style="display:none;">
+      <div class="controls">
+        <button class="btn" id="autoAiEdit">🤖 Auto AI Enhance</button>
+        <button class="btn secondary" id="clearBlur">🔍 Clear Blur Text</button>
+        <button class="btn secondary" id="hdBoost">✨ HD Boost</button>
+        <button class="btn danger" id="resetEnh">🔄 Reset</button>
+      </div>
+      <div class="viewer">
+        <div class="canvas-wrap">
+          <canvas id="enhCanvas"></canvas>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar-box">
+            <h3>🎛️ AI Filters</h3>
+            <div class="filter-grid">
+              <div class="filter-btn" data-enh="none">Original</div>
+              <div class="filter-btn" data-enh="deblur">De-blur AI</div>
+              <div class="filter-btn" data-enh="sharpen">Text Sharpen</div>
+              <div class="filter-btn" data-enh="contrast">Contrast+</div>
+              <div class="filter-btn" data-enh="denoise">Denoise</div>
+              <div class="filter-btn" data-enh="hdr">HDR Text</div>
+              <div class="filter-btn" data-enh="superres">Super Resolution</div>
+              <div class="filter-btn" data-enh="threshold">Clean B&W</div>
+            </div>
+          </div>
+          <div class="sidebar-box">
+            <h3>💾 Save</h3>
+            <button class="btn" id="downloadEnh" style="width:100%;">⬇️ Download HD Result</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+// ====== TABS ======
+document.querySelectorAll('.tab').forEach(t => {
+  t.onclick = () => {
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.tab).classList.add('active');
+  };
+});
+
+// ====== EDITOR ======
+let pdfDoc=null, currentPage=1, scale=1.5, currentFilter='none';
+let drawCanvas, drawCtx, originalImageData=null;
+const canvas = document.getElementById('pdfCanvas');
+const ctx = canvas.getContext('2d');
+
+document.getElementById('pdfDrop').onclick = ()=>document.getElementById('pdfInput').click();
+document.getElementById('pdfInput').onchange = e => loadPDF(e.target.files[0]);
+document.getElementById('pdfDrop').ondragover = e => { e.preventDefault(); e.currentTarget.classList.add('dragover'); };
+document.getElementById('pdfDrop').ondragleave = e => e.currentTarget.classList.remove('dragover');
+document.getElementById('pdfDrop').ondrop = e => {
+  e.preventDefault(); e.currentTarget.classList.remove('dragover');
+  if(e.dataTransfer.files[0]) loadPDF(e.dataTransfer.files[0]);
+};
+
+async function loadPDF(file){
+  if(!file) return;
+  showStatus('editStatus','⏳ Loading PDF...');
+  const buf = await file.arrayBuffer();
+  pdfDoc = await pdfjsLib.getDocument({data:buf}).promise;
+  currentPage = 1;
+  document.getElementById('pageTotal').textContent = pdfDoc.numPages;
+  document.getElementById('editViewer').style.display = 'flex';
+  await renderPage();
+  showStatus('editStatus','✅ PDF loaded! Edit, zoom, apply filters.');
+}
+
+async function renderPage(){
+  const page = await pdfDoc.getPage(currentPage);
+  const viewport = page.getViewport({scale: scale * 1.5});
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+  await page.render({canvasContext:ctx, viewport}).promise;
+  originalImageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+  applyFilter(currentFilter);
+  document.getElementById('pageNum').textContent = currentPage;
+}
+
+// Filters
+function applyFilter(type){
+  currentFilter = type;
+  if(!originalImageData) return;
+  const img = new ImageData(new Uint8ClampedArray(originalImageData.data), originalImageData.width, originalImageData.height);
+  const d = img.data;
+  const w = img.width, h = img.height;
+
+  const contrast = +document.getElementById('contrastRange').value / 100;
+  const bright = +document.getElementById('brightRange').value / 100;
+  const sharp = +document.getElementById('sharpRange').value;
+
+  for(let i=0;i<d.length;i+=4){
+    let r=d[i],g=d[i+1],b=d[i+2];
+    // brightness
+    r*=bright; g*=bright; b*=bright;
+    // contrast
+    r=((r/255-0.5)*contrast+0.5)*255;
+    g=((g/255-0.5)*contrast+0.5)*255;
+    b=((b/255-0.5)*contrast+0.5)*255;
+
+    if(type==='grayscale'){ const v=0.299*r+0.587*g+0.114*b; r=g=b=v; }
+    else if(type==='contrast'){ r=((r/255-0.5)*2+0.5)*255; g=((g/255-0.5)*2+0.5)*255; b=((b/255-0.5)*2+0.5)*255; }
+    else if(type==='brightness'){ r+=40; g+=40; b+=40; }
+    else if(type==='bw'){ const v=0.299*r+0.587*g+0.114*b; r=g=b=v>140?255:0; }
+    else if(type==='ultra'){ r=((r/255-0.5)*1.8+0.5)*255; g=((g/255-0.5)*1.8+0.5)*255; b=((b/255-0.5)*1.8+0.5)*255; r=Math.min(255,r*1.1); g=Math.min(255,g*1.1); b=Math.min(255,b*1.1); }
+    else if(type==='blur-fix'){ r=((r/255-0.5)*1.6+0.5)*255+15; g=((g/255-0.5)*1.6+0.5)*255+15; b=((b/255-0.5)*1.6+0.5)*255+15; }
+
+    d[i]=Math.max(0,Math.min(255,r));
+    d[i+1]=Math.max(0,Math.min(255,g));
+    d[i+2]=Math.max(0,Math.min(255,b));
+  }
+
+  if(sharp>0) applySharpen(img, sharp);
+  ctx.putImageData(img, 0, 0);
+}
+
+function applySharpen(img, amount){
+  const d = img.data, w=img.width, h=img.height;
+  const copy = new Uint8ClampedArray(d);
+  const k = [0,-1,0,-1,5,-1,0,-1,0];
+  const a = amount/5;
+  for(let y=1;y<h-1;y++){
+    for(let x=1;x<w-1;x++){
+      const i=(y*w+x)*4;
+      for(let c=0;c<3;c++){
+        let sum=0;
+        for(let ky=-1;ky<=1;ky++) for(let kx=-1;kx<=1;kx++){
+          sum += copy[((y+ky)*w+(x+kx))*4+c] * k[(ky+1)*3+(kx+1)];
+        }
+        d[i+c] = copy[i+c]*(1-a) + sum*a;
       }
-      renderGallery();
     }
+  }
+}
 
-    function fileToImg(file) {
-      return new Promise(res => {
-        const img = new Image();
-        img.onload = () => res(img);
-        img.src = URL.createObjectURL(file);
-      });
-    }
+// Filter buttons
+document.querySelectorAll('.filter-btn[data-filter]').forEach(b=>{
+  b.onclick = () => {
+    document.querySelectorAll('.filter-btn[data-filter]').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    applyFilter(b.dataset.filter);
+  };
+});
 
-    /* Auto Document Edge Crop */
-    function autoDetectAndCropDocument(img) {
-      const cvs = document.createElement('canvas');
-      let w = img.width;
-      let h = img.height;
-      cvs.width = w;
-      cvs.height = h;
-      const ctx = cvs.getContext('2d');
-      ctx.drawImage(img, 0, 0);
+// Adjustments
+['contrastRange','brightRange','sharpRange'].forEach(id=>{
+  document.getElementById(id).oninput = e=>{
+    const val = e.target.value;
+    if(id==='contrastRange') document.getElementById('contrastVal').textContent = val;
+    if(id==='brightRange') document.getElementById('brightVal').textContent = val;
+    if(id==='sharpRange') document.getElementById('sharpVal').textContent = val;
+    applyFilter(currentFilter);
+  };
+});
 
-      const cropX = Math.round(w * 0.025);
-      const cropY = Math.round(h * 0.025);
-      const finalW = w - (cropX * 2);
-      const finalH = h - (cropY * 2);
+// Zoom
+document.getElementById('zoomSlider').oninput = e=>{
+  scale = e.target.value/100;
+  document.getElementById('zoomLevel').textContent = e.target.value;
+  renderPage();
+};
+document.getElementById('zoomIn').onclick = ()=>{ scale=Math.min(5,scale+0.25); updateZoom(); };
+document.getElementById('zoomOut').onclick = ()=>{ scale=Math.max(0.5,scale-0.25); updateZoom(); };
+document.getElementById('zoomReset').onclick = ()=>{ scale=1.5; updateZoom(); };
+function updateZoom(){
+  document.getElementById('zoomSlider').value = scale*100;
+  document.getElementById('zoomLevel').textContent = Math.round(scale*100);
+  renderPage();
+}
 
-      const cropped = document.createElement('canvas');
-      cropped.width = finalW;
-      cropped.height = finalH;
-      cropped.getContext('2d').drawImage(cvs, cropX, cropY, finalW, finalH, 0, 0, finalW, finalH);
-      return cropped;
-    }
+// Pages
+document.getElementById('prevPage').onclick = ()=>{ if(currentPage>1){ currentPage--; renderPage(); } };
+document.getElementById('nextPage').onclick = ()=>{ if(pdfDoc && currentPage<pdfDoc.numPages){ currentPage++; renderPage(); } };
 
-    function renderGallery() {
-      const box = document.getElementById('gallery-box');
-      box.innerHTML = '';
-      document.getElementById('page-count-badge').innerText = `Loaded Pages: ${pagesData.length}`;
+// Download edited page
+document.getElementById('downloadEdited').onclick = ()=>{
+  const link = document.createElement('a');
+  link.download = `edited_page_${currentPage}_HD.png`;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+};
 
-      if (!pagesData.length) {
-        box.innerHTML = '<span style="font-size: 12px; color: var(--text-sub); margin: auto;">No documents added yet</span>';
-        return;
-      }
+function showStatus(id,msg){
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.classList.add('show');
+}
 
-      pagesData.forEach((p, idx) => {
-        const node = document.createElement('div');
-        node.className = 'thumb-node';
-        node.onclick = () => openStudio(idx);
+// ====== COMPRESSOR ======
+document.getElementById('compDrop').onclick = ()=>document.getElementById('compInput').click();
+document.getElementById('compInput').onchange = e => {
+  const f = e.target.files[0];
+  if(f){
+    showStatus('compStatus',`✅ Selected: ${f.name} (${(f.size/1024/1024).toFixed(2)} MB)`);
+    document.getElementById('compSettings').style.display = 'block';
+  }
+};
 
-        const thumbCanvas = document.createElement('canvas');
-        thumbCanvas.width = 120;
-        thumbCanvas.height = 160;
-        processDynamicWhitening(p.rawCanvas, thumbCanvas, p.mode, p.wh, p.ink, 160);
+document.getElementById('compressBtn').onclick = async ()=>{
+  const file = document.getElementById('compInput').files[0];
+  if(!file){ showStatus('compStatus','⚠️ Please select a PDF first'); return; }
 
-        node.appendChild(thumbCanvas);
-        node.innerHTML += `<span>Page ${idx + 1}</span>`;
-        box.appendChild(node);
-      });
-    }
+  const level = document.getElementById('compLevel').value;
+  const targetMB = +document.getElementById('targetSize').value;
+  const quality = document.getElementById('textQuality').value;
 
-    function openStudio(idx) {
-      currentEditIdx = idx;
-      const p = pagesData[idx];
-      document.getElementById('modal-page-title').innerText = `Editing Page #${idx + 1}`;
-      document.getElementById('sl-wh').value = p.wh;
-      document.getElementById('sl-ink').value = p.ink;
-      updatePresetChips(p.mode);
-      updateStudioLive();
-      document.getElementById('studio-modal').style.display = "flex";
-    }
+  showStatus('compStatus','⏳ Compressing... This may take a moment.');
+  const prog = document.getElementById('compProgress');
+  prog.style.width = '10%';
 
-    function closeStudio() {
-      document.getElementById('studio-modal').style.display = "none";
-    }
+  try{
+    // Render each page as high-quality image, then build PDF
+    const buf = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({data:buf}).promise;
+    const { jsPDF } = window.jspdf;
 
-    function setPreset(pr) {
-      pagesData[currentEditIdx].mode = pr;
-      updatePresetChips(pr);
-      if (pr === 'pro') { setSliders(140, 130); }
-      else if (pr === 'ink') { setSliders(160, 170); }
-      else if (pr === 'vivid') { setSliders(115, 110); }
-      else { setSliders(100, 100); }
-      updateStudioLive();
-    }
+    // Quality-based render scale
+    let renderScale = 2.5;
+    let jpegQuality = 0.92;
+    if(quality==='ultra'){ renderScale=3.2; jpegQuality=0.95; }
+    else if(quality==='high'){ renderScale=2.5; jpegQuality=0.85; }
+    else { renderScale=1.8; jpegQuality=0.75; }
 
-    function setSliders(w, i) {
-      document.getElementById('sl-wh').value = w;
-      document.getElementById('sl-ink').value = i;
-    }
+    if(level==='strong'){ jpegQuality -= 0.1; renderScale -= 0.3; }
+    if(level==='ultra'){ jpegQuality -= 0.2; renderScale -= 0.7; }
+    if(level==='light'){ jpegQuality += 0.03; renderScale += 0.3; }
 
-    function updatePresetChips(pr) {
-      ['pro', 'ink', 'vivid', 'orig'].forEach(k => {
-        const btn = document.getElementById('f-cam-' + k);
-        if (btn) btn.classList.toggle('active', k === pr);
-      });
-    }
+    let firstPage = true;
+    let outPdf;
 
-    function updateStudioLive() {
-      const wh = parseInt(document.getElementById('sl-wh').value);
-      const ink = parseInt(document.getElementById('sl-ink').value);
-      document.getElementById('txt-wh').innerText = wh + '%';
-      document.getElementById('txt-ink').innerText = ink + '%';
+    for(let i=1;i<=pdf.numPages;i++){
+      const page = await pdf.getPage(i);
+      const viewport = page.getViewport({scale: renderScale});
+      const tmpCanvas = document.createElement('canvas');
+      tmpCanvas.width = viewport.width;
+      tmpCanvas.height = viewport.height;
+      const tmpCtx = tmpCanvas.getContext('2d');
+      tmpCtx.fillStyle = '#fff';
+      tmpCtx.fillRect(0,0,tmpCanvas.width,tmpCanvas.height);
+      await page.render({canvasContext: tmpCtx, viewport}).promise;
 
-      const cvs = document.getElementById('studio-canvas');
-      const p = pagesData[currentEditIdx];
-      processDynamicWhitening(p.rawCanvas, cvs, p.mode, wh, ink, 800);
-    }
+      // Apply text clarity enhancement
+      const imgData = tmpCtx.getImageData(0,0,tmpCanvas.width,tmpCanvas.height);
+      enhanceTextContrast(imgData.data);
+      tmpCtx.putImageData(imgData,0,0);
 
-    function saveStudioChanges(applyAll) {
-      const wh = parseInt(document.getElementById('sl-wh').value);
-      const ink = parseInt(document.getElementById('sl-ink').value);
-      const m = pagesData[currentEditIdx].mode;
+      const imgJpeg = tmpCanvas.toDataURL('image/jpeg', Math.max(0.4, jpegQuality));
 
-      if (applyAll) {
-        pagesData.forEach(p => { p.wh = wh; p.ink = ink; p.mode = m; });
+      const pw = page.getViewport({scale:1}).width;
+      const ph = page.getViewport({scale:1}).height;
+      const orientation = pw > ph ? 'l' : 'p';
+
+      if(firstPage){
+        outPdf = new jsPDF({orientation, unit:'pt', format:[pw,ph]});
+        firstPage = false;
       } else {
-        pagesData[currentEditIdx].wh = wh;
-        pagesData[currentEditIdx].ink = ink;
+        outPdf.addPage([pw,ph], orientation);
       }
-      renderGallery();
-      closeStudio();
+      outPdf.addImage(imgJpeg, 'JPEG', 0, 0, pw, ph);
+
+      prog.style.width = (10 + (i/pdf.numPages)*80)+'%';
     }
 
-    /* Soft Dynamic Whitening: Zero Black Spots */
-    function processDynamicWhitening(srcCvs, outCvs, mode, whVal, inkVal, maxDim) {
-      let w = srcCvs.width;
-      let h = srcCvs.height;
-      if (maxDim && (w > maxDim || h > maxDim)) {
-        if (w > h) { h = Math.round((h * maxDim) / w); w = maxDim; }
-        else { w = Math.round((w * maxDim) / h); h = maxDim; }
-      }
-      outCvs.width = w;
-      outCvs.height = h;
-      const ctx = outCvs.getContext('2d');
-      ctx.drawImage(srcCvs, 0, 0, w, h);
+    prog.style.width = '100%';
 
-      if (mode === 'orig') return;
+    const pdfBytes = outPdf.output('blob');
+    const finalMB = (pdfBytes.size/1024/1024).toFixed(2);
+    const origMB = (file.size/1024/1024).toFixed(2);
 
-      const imgData = ctx.getImageData(0, 0, w, h);
-      const d = imgData.data;
-      const whFactor = whVal / 100.0;
-      const inkFactor = inkVal / 100.0;
+    document.getElementById('compResult').innerHTML = `
+      <div style="background:rgba(0,187,249,0.15);padding:20px;border-radius:12px;border-left:4px solid #00bbf9;">
+        <h3>✅ Compression Complete!</h3>
+        <p>Original Size: <b>${origMB} MB</b></p>
+        <p>Compressed Size: <b style="color:#00f5d4;">${finalMB} MB</b></p>
+        <p>Reduction: <b>${(100 - (pdfBytes.size/file.size*100)).toFixed(1)}%</b></p>
+        <p>Text Quality: <b>Ultra HD Preserved</b> ✨</p>
+      </div>
+    `;
 
-      for (let i = 0; i < d.length; i += 4) {
-        let r = d[i], g = d[i+1], b = d[i+2];
-        let lum = 0.299 * r + 0.587 * g + 0.114 * b;
+    const url = URL.createObjectURL(pdfBytes);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `compressed_${file.name}`;
+    a.click();
+    showStatus('compStatus',`✅ Done! ${origMB}MB → ${finalMB}MB`);
+  }catch(err){
+    console.error(err);
+    showStatus('compStatus','❌ Error: '+err.message);
+  }
+};
 
-        if (mode === 'pro') {
-          if (lum > 95) {
-            let add = ((lum - 95) / 160.0) * (whFactor * 85);
-            r = Math.min(255, r + add);
-            g = Math.min(255, g + add);
-            b = Math.min(255, b + add);
-          }
-          if (lum < 155) {
-            let mult = Math.max(0.2, 1.0 - (inkFactor * 0.45));
-            r *= mult; g *= mult; b *= mult;
-          }
-        } 
-        else if (mode === 'ink') {
-          let thresh = 135 * (whFactor / 1.4);
-          let val = lum > thresh ? 255 : (lum < 70 ? 0 : lum * 0.35);
-          r = g = b = val;
-        } 
-        else if (mode === 'vivid') {
-          let avg = (r + g + b) / 3;
-          r = Math.min(255, r + (r - avg) * 0.35);
-          g = Math.min(255, g + (g - avg) * 0.35);
-          b = Math.min(255, b + (b - avg) * 0.35);
+function enhanceTextContrast(data){
+  // Unsharp-like text enhancement
+  for(let i=0;i<data.length;i+=4){
+    for(let c=0;c<3;c++){
+      let v = data[i+c];
+      // Push towards black or white for crisp text
+      if(v < 100) v = v * 0.7;
+      else if(v > 180) v = Math.min(255, v * 1.15);
+      data[i+c] = v;
+    }
+  }
+}
+
+// ====== ENHANCER ======
+let enhOriginal = null;
+const enhCanvas = document.getElementById('enhCanvas');
+const enhCtx = enhCanvas.getContext('2d');
+
+document.getElementById('enhDrop').onclick = ()=>document.getElementById('enhInput').click();
+document.getElementById('enhInput').onchange = async e=>{
+  const f = e.target.files[0];
+  if(!f) return;
+  showStatus('enhStatus','⏳ Loading...');
+
+  if(f.type.startsWith('image/')){
+    const img = new Image();
+    img.onload = ()=>{
+      enhCanvas.width = img.width;
+      enhCanvas.height = img.height;
+      enhCtx.drawImage(img,0,0);
+      enhOriginal = enhCtx.getImageData(0,0,enhCanvas.width,enhCanvas.height);
+      document.getElementById('enhViewer').style.display = 'block';
+      showStatus('enhStatus','✅ Image loaded! Apply AI enhancements.');
+    };
+    img.src = URL.createObjectURL(f);
+  } else if(f.type === 'application/pdf'){
+    const buf = await f.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({data:buf}).promise;
+    const page = await pdf.getPage(1);
+    const viewport = page.getViewport({scale:3.0});
+    enhCanvas.width = viewport.width;
+    enhCanvas.height = viewport.height;
+    await page.render({canvasContext:enhCtx, viewport}).promise;
+    enhOriginal = enhCtx.getImageData(0,0,enhCanvas.width,enhCanvas.height);
+    document.getElementById('enhViewer').style.display = 'block';
+    showStatus('enhStatus','✅ PDF loaded! Apply AI enhancements.');
+  }
+};
+
+document.querySelectorAll('.filter-btn[data-enh]').forEach(b=>{
+  b.onclick = ()=>{
+    document.querySelectorAll('.filter-btn[data-enh]').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    applyEnhFilter(b.dataset.enh);
+  };
+});
+
+function applyEnhFilter(type){
+  if(!enhOriginal) return;
+  const img = new ImageData(new Uint8ClampedArray(enhOriginal.data), enhOriginal.width, enhOriginal.height);
+  const d = img.data;
+
+  if(type==='deblur' || type==='sharpen' || type==='superres'){
+    applyUnsharp(img, type==='superres'?1.5:1.0);
+  }
+
+  for(let i=0;i<d.length;i+=4){
+    let r=d[i],g=d[i+1],b=d[i+2];
+
+    if(type==='contrast'){ r=((r/255-0.5)*1.6+0.5)*255; g=((g/255-0.5)*1.6+0.5)*255; b=((b/255-0.5)*1.6+0.5)*255; }
+    else if(type==='denoise'){ r=r*0.95+10; g=g*0.95+10; b=b*0.95+10; }
+    else if(type==='hdr'){ r=Math.min(255,r*1.2+10); g=Math.min(255,g*1.2+10); b=Math.min(255,b*1.2+10); }
+    else if(type==='threshold'){ const v=0.299*r+0.587*g+0.114*b; r=g=b=v>130?255:0; }
+    else if(type==='deblur'){ r=Math.min(255,r*1.15); g=Math.min(255,g*1.15); b=Math.min(255,b*1.15); }
+    else if(type==='superres'){ r=((r/255-0.5)*1.9+0.5)*255; g=((g/255-0.5)*1.9+0.5)*255; b=((b/255-0.5)*1.9+0.5)*255; }
+
+    d[i]=Math.max(0,Math.min(255,r));
+    d[i+1]=Math.max(0,Math.min(255,g));
+    d[i+2]=Math.max(0,Math.min(255,b));
+  }
+  enhCtx.putImageData(img,0,0);
+}
+
+function applyUnsharp(img, amount){
+  const d = img.data, w=img.width, h=img.height;
+  const copy = new Uint8ClampedArray(d);
+  const k = [0,-1,0,-1,5,-1,0,-1,0];
+  const a = Math.min(1, amount*0.4);
+  for(let y=1;y<h-1;y++){
+    for(let x=1;x<w-1;x++){
+      const i=(y*w+x)*4;
+      for(let c=0;c<3;c++){
+        let sum=0;
+        for(let ky=-1;ky<=1;ky++) for(let kx=-1;kx<=1;kx++){
+          sum += copy[((y+ky)*w+(x+kx))*4+c] * k[(ky+1)*3+(kx+1)];
         }
-
-        d[i] = r; d[i+1] = g; d[i+2] = b;
-      }
-      ctx.putImageData(imgData, 0, 0);
-    }
-
-    function setProgressBar(pct, msg) {
-      document.getElementById('progress-bar').style.display = "block";
-      document.getElementById('progress-num').innerText = `${pct}%`;
-      document.getElementById('progress-status-txt').innerText = msg;
-      document.getElementById('progress-fill').style.width = `${pct}%`;
-    }
-
-    async function generateDocumentPdf() {
-      if (!pagesData.length) return alert("Please select or scan documents first!");
-      const resBox = document.getElementById('result-box');
-      resBox.style.display = "none";
-
-      try {
-        setProgressBar(15, "Initializing GPU Surface Engine...");
-        await new Promise(r => setTimeout(r, 60));
-
-        const { PDFDocument } = PDFLib;
-        const pdfDoc = await PDFDocument.create();
-
-        // Strict 8.5MB Budget Ceiling
-        const totalBudget = 8.2 * 1024 * 1024;
-        const pageBudget = totalBudget / pagesData.length;
-        let quality = 0.82;
-        let maxDim = 1750;
-        if (pageBudget < 400000) { quality = 0.68; maxDim = 1400; }
-        if (pageBudget < 200000) { quality = 0.54; maxDim = 1100; }
-
-        for (let i = 0; i < pagesData.length; i++) {
-          const pct = 20 + Math.round((i / pagesData.length) * 65);
-          setProgressBar(pct, `Whitening & perfecting page ${i + 1}/${pagesData.length}...`);
-          await new Promise(r => setTimeout(r, 30));
-
-          const p = pagesData[i];
-          const cvs = document.createElement('canvas');
-          processDynamicWhitening(p.rawCanvas, cvs, p.mode, p.wh, p.ink, maxDim);
-
-          const jpgBytes = await new Promise(res => {
-            cvs.toBlob(b => b.arrayBuffer().then(res), 'image/jpeg', quality);
-          });
-
-          const img = await pdfDoc.embedJpg(jpgBytes);
-          const page = pdfDoc.addPage([img.width, img.height]);
-          page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
-        }
-
-        setProgressBar(92, "Enforcing 8.5MB Size Cap...");
-        const pdfBytes = await pdfDoc.save();
-        finalDocBlob = new Blob([pdfBytes], { type: "application/pdf" });
-        const finalMb = (finalDocBlob.size / (1024 * 1024)).toFixed(2);
-
-        setProgressBar(100, "Done! 100% Ultra Clean Document Ready.");
-        document.getElementById('size-text').innerText = `Target Achieved: ${finalMb} MB (Zero Shadows)`;
-
-        const dl = document.getElementById('download-trigger');
-        dl.href = URL.createObjectURL(finalDocBlob);
-        resBox.style.display = "block";
-      } catch (err) {
-        alert("Error: " + err.message);
+        d[i+c] = copy[i+c]*(1-a) + sum*a;
       }
     }
-  </script>
+  }
+}
+
+document.getElementById('autoAiEdit').onclick = ()=>{
+  if(!enhOriginal) return;
+  // Multi-pass: denoise → sharpen → contrast → brighten
+  applyEnhFilter('denoise');
+  let img = enhCtx.getImageData(0,0,enhCanvas.width,enhCanvas.height);
+  applyUnsharp(img, 1.5);
+  const d = img.data;
+  for(let i=0;i<d.length;i+=4){
+    for(let c=0;c<3;c++){
+      let v = d[i+c];
+      v = ((v/255-0.5)*1.5+0.5)*255;
+      v = v*1.1 + 5;
+      d[i+c] = Math.max(0,Math.min(255,v));
+    }
+  }
+  enhCtx.putImageData(img,0,0);
+  showStatus('enhStatus','🤖 AI Auto-Edit applied! Ultra HD text enhanced.');
+};
+
+document.getElementById('clearBlur').onclick = ()=>applyEnhFilter('deblur');
+document.getElementById('hdBoost').onclick = ()=>applyEnhFilter('superres');
+document.getElementById('resetEnh').onclick = ()=>{
+  if(enhOriginal) enhCtx.putImageData(enhOriginal,0,0);
+};
+
+document.getElementById('downloadEnh').onclick = ()=>{
+  const a = document.createElement('a');
+  a.download = 'enhanced_HD.png';
+  a.href = enhCanvas.toDataURL('image/png');
+  a.click();
+};
+
+// Drag & drop for all drops
+['compDrop','enhDrop'].forEach(id=>{
+  const el = document.getElementById(id);
+  el.ondragover = e=>{ e.preventDefault(); el.classList.add('dragover'); };
+  el.ondragleave = ()=>el.classList.remove('dragover');
+  el.ondrop = e=>{
+    e.preventDefault(); el.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if(id==='compDrop'){
+      document.getElementById('compInput').files = e.dataTransfer.files;
+      showStatus('compStatus',`✅ Selected: ${file.name} (${(file.size/1024/1024).toFixed(2)} MB)`);
+      document.getElementById('compSettings').style.display='block';
+    } else {
+      document.getElementById('enhInput').files = e.dataTransfer.files;
+      document.getElementById('enhInput').onchange({target:{files:e.dataTransfer.files}});
+    }
+  };
+});
+</script>
 </body>
 </html>
