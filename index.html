@@ -2,11 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
- <link rel="icon" type="image/png" sizes="48x48" href="favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Primary Meta Tags -->
+<title>ZafranPdfCon - Free PDF Converter & Editor</title>
+<meta name="title" content="ZafranPdfCon - Free PDF Converter & Editor">
+<meta name="description" content="ZafranPdfCon is a professional online PDF suite to compress PDF to 7MB, 8MB, or 9MB, edit PDF pages, convert images to PDF, scan via camera, and export HD images.">
+<meta name="keywords" content="ZafranPdfCon, PDF Converter, ZafranPDF, compress PDF 8MB, PDF compressor, image to PDF, online PDF editor, free PDF tools">
+<meta name="author" content="Zafran">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://noobextra94-del.github.io/Zafranpdfcon/">
+
+<!-- Favicon & Touch Icons -->
+<link rel="icon" type="image/png" sizes="48x48" href="favicon.png">
 <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 <link rel="apple-touch-icon" href="favicon.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZafranPDF_Converter - Professional Suite</title>
+
+<!-- Open Graph / Facebook / WhatsApp SEO Preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://noobextra94-del.github.io/Zafranpdfcon/">
+<meta property="og:title" content="ZafranPdfCon - Free PDF Converter & Editor">
+<meta property="og:description" content="Free Online PDF Suite: Compress to 7MB, 8MB, 9MB, apply HD filters, scan documents, and convert formats effortlessly.">
+<meta property="og:image" content="https://noobextra94-del.github.io/Zafranpdfcon/favicon.png">
+
 <style>
   * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
   body { background:linear-gradient(135deg,#0f0c29,#302b63,#24243e); min-height:100vh; color:#fff; padding:20px; }
@@ -91,7 +109,7 @@
   <div class="brand">
     <div class="logo"><span>Z</span></div>
     <div class="brand-text">
-      <div class="brand-name">ZafranPDF Converter</div>
+      <div class="brand-name">ZafranPdfCon</div>
       <div class="brand-tag">Professional Suite</div>
     </div>
   </div>
@@ -1308,7 +1326,7 @@ function applyP2iFilter(type){
   if(!p2iOriginalData) return;
   const contrast = +document.getElementById('p2iContrastRange').value;
   const bright = +document.getElementById('p2iBrightRange').value;
-  const sharp = +document.getElementById('p2iSharpRange').value;
+  const sharp = +document.getElementById('sharpRange') ? +document.getElementById('sharpRange').value : 0;
   const img = applyFilterToImageData(p2iOriginalData, type, {contrast, bright, sharp});
   p2iCtx.putImageData(img, 0, 0);
   p2iCache[p2iPage] = { data: img, w: p2iCanvas.width, h: p2iCanvas.height };
